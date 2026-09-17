@@ -16,9 +16,12 @@ Then open http://localhost:4173.
 ```
 index.html              Landing page
 menu.html               Full price list, served at /menu
+about.html              The kitchen's story, served at /about
+contact.html            Address, hours, form and delivery areas, at /contact
 assets/css/style.css    Design tokens, components, responsive rules, motion
 assets/js/main.js       Reveals, hero video, cart, filters, rail, drawer, embers loader
 assets/js/menu.js       Menu page: chips, search, tap-a-price ordering, fly-to-cart
+assets/js/contact.js    Contact form validation, composes a mailto
 assets/js/embers.js     The WebGL spark field (ES module, loaded on demand)
 assets/vendor/          three.js, vendored so there is no third-party origin
 assets/font/            Plus Jakarta Sans, self-hosted
@@ -27,10 +30,14 @@ assets/video/           Hero footage, MP4 + WebM at 1280px and 720px
 vercel.json             Cache headers and security headers
 ```
 
-The two pages share their header, drawer and footer markup. There is no build
+The four pages share their header, drawer and footer markup. There is no build
 step, so that markup is duplicated rather than templated; `menu.html` was
 generated from `index.html`'s chrome, and a change to one needs the same change
-in the other.
+in all of them.
+
+The contact form has no backend. Rather than pretend to submit, it validates and
+hands the message to the visitor's mail app with every field filled in, so they
+keep a copy and replies go to a real address. The page says so above the form.
 
 ## Images and video
 
@@ -125,6 +132,19 @@ The hero is the part that moves most:
   name) so it shares a row with the order button instead of taking its own, and
   the top strip drops the delivery clause rather than wrapping to two lines.
 - Under 380px the card price and add button shrink so they stop competing.
+
+## Responsive gotchas worth remembering
+
+Two bugs in this layout came from the same place — a box whose size depends on
+content that has not arrived yet:
+
+- The story photo is a lit bowl on a dark ground in a 4:5 crop. Stacked on a
+  tablet that ran 1100px+ tall and read as a black slab, so the media is capped
+  at 420px and centred below 1180px.
+- Capping it with `margin-inline: auto` alone made it *worse*: auto margins turn
+  a grid item from stretch into fit-content, and fit-content of a lazy image
+  that has not decoded is zero. It needs an explicit `width: 100%` alongside the
+  `max-width`.
 
 ## Accessibility
 
