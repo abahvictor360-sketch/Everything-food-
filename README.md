@@ -135,6 +135,17 @@ The hero is the part that moves most:
   the top strip drops the delivery clause rather than wrapping to two lines.
 - Under 380px the card price and add button shrink so they stop competing.
 
+## Navigation state
+
+`Menu` and `Contact` are pages, so their nav items carry `aria-current` from the
+markup. `Home` and `Services` are anchors on the landing page, so the scroll
+observer owns those. The observer therefore skips any link whose href does not
+start with `#` — without that guard it wiped the server-rendered state, and the
+Menu item never highlighted on the menu page.
+
+The landing page's newsletter block is `#newsletter`. It used to be `#contact`,
+which stopped being true once contact became a page of its own.
+
 ## Responsive gotchas worth remembering
 
 Two bugs in this layout came from the same place — a box whose size depends on

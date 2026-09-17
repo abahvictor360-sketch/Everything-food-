@@ -80,7 +80,7 @@
 
   /* ----------------------------------------------------- Active nav section */
   var navLinks = $$('[data-nav]');
-  var sectionFor = { top: '#top', menu: '#menu', services: '#services', contact: '#contact' };
+  var sectionFor = { top: '#top', bestsellers: '#bestsellers', services: '#services' };
   if ('IntersectionObserver' in window) {
     var watched = Object.keys(sectionFor)
       .map(function (k) { return $(sectionFor[k]); })
@@ -91,7 +91,11 @@
         if (!entry.isIntersecting) return;
         var id = '#' + entry.target.id;
         navLinks.forEach(function (a) {
-          a.setAttribute('aria-current', a.getAttribute('href') === id ? 'true' : 'false');
+          var href = a.getAttribute('href');
+          // Links to another page carry their state from the server. Only
+          // same-page anchors are the scroll position's to decide.
+          if (href.charAt(0) !== '#') return;
+          a.setAttribute('aria-current', href === id ? 'true' : 'false');
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
