@@ -2,6 +2,16 @@
    Everything Food — design system
    ========================================================================== */
 
+/* ---------- Font: self-hosted so there is no third-party request on the
+   critical path, and no FOUT from a stylesheet that has to be fetched first. --- */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/font/plus-jakarta-sans.woff2") format("woff2-variations");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Brand */
   --maroon-900: #2E0D0D;
@@ -298,8 +308,9 @@ section { position: relative; }
 .hero .eyebrow { color: #F7B7AC; }
 .hero__title {
   margin-top: .9rem;
-  font-size: clamp(2.6rem, 6.4vw, 4.6rem);
+  font-size: clamp(2.35rem, 5.8vw, 4.6rem);
   font-weight: 800; line-height: 1.02; letter-spacing: -.035em;
+  text-wrap: balance;
 }
 .hero__title em { font-style: normal; color: var(--red-500); }
 .hero__text { margin-top: 1.25rem; color: rgba(255, 245, 242, .8); font-size: 1.04rem; max-width: 42ch; }
@@ -715,7 +726,7 @@ section { position: relative; }
 /* ==========================================================================
    Responsive
    ========================================================================== */
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .hero__inner { grid-template-columns: 1fr; }
   .services { flex-direction: row; flex-wrap: wrap; }
   .service { width: auto; flex: 1 1 14rem; }
@@ -997,3 +1008,51 @@ section { position: relative; }
 /* Embers sit above the hero scrim but below the copy */
 .embers--hero { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 .hero__inner { position: relative; z-index: 1; }
+
+/* ==========================================================================
+   Hero: short and small viewports
+   ========================================================================== */
+
+/* Landscape phones and short tablet windows: the hero was taller than the
+   viewport, so the dish chips fell below the fold with nothing to suggest it. */
+@media (orientation: landscape) and (max-height: 720px) {
+  .hero { min-height: 0; padding-block: clamp(1.75rem, 5vh, 3rem); }
+  .hero__title { font-size: clamp(2rem, 4.6vw, 3.2rem); }
+  .hero__text { margin-top: .9rem; font-size: .95rem; }
+  .hero__actions { margin-top: 1.25rem; }
+  .hero__chips { margin-top: 1.5rem; }
+  .services { gap: .4rem; }
+  .service { padding: .7rem .9rem; }
+  .service p { display: none; }
+}
+
+@media (max-width: 620px) {
+  .hero { min-height: 0; padding-block: 2.5rem 3rem; }
+  .hero__text { margin-top: 1rem; font-size: .97rem; }
+  .hero__actions { margin-top: 1.5rem; gap: .65rem; }
+  .hero__chips { margin-top: 1.75rem; gap: .6rem; }
+
+  /* Keep the order button and the play control on one line — the label is
+     still announced, it just stops costing a row. */
+  #play-label {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+  .play { gap: 0; }
+
+  .services { gap: .5rem; margin-top: .5rem; }
+  .service { flex: 1 1 100%; padding: .85rem 1rem; }
+  .topbar__note { font-size: .78rem; }
+  .topbar__extra { display: none; }
+}
+
+/* Very narrow phones: the price and the add button were fighting for the row */
+@media (max-width: 380px) {
+  .hero__title { font-size: 2.15rem; }
+  .card__foot { gap: .4rem; }
+  .card__price { font-size: .95rem; }
+  .card__add { width: 32px; height: 32px; }
+  .badge--spin { width: 84px; height: 84px; }
+  .badge--float { width: 92px; height: 92px; }
+}

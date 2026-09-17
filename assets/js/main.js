@@ -447,7 +447,7 @@
 
   if (embersAreAffordable()) {
     var loadEmbers = function () {
-      import('/assets/js/embers.js')
+      import('/assets/js/embers.js?v=3')
         .then(function (mod) { mod.createEmbers(emberCanvas); })
         .catch(function () { emberCanvas.remove(); });
     };

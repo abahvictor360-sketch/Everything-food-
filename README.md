@@ -21,6 +21,7 @@ assets/js/main.js       Reveals, hero video, cart, filters, rail, drawer, embers
 assets/js/menu.js       Menu page: chips, search, tap-a-price ordering, fly-to-cart
 assets/js/embers.js     The WebGL spark field (ES module, loaded on demand)
 assets/vendor/          three.js, vendored so there is no third-party origin
+assets/font/            Plus Jakarta Sans, self-hosted
 assets/img/             Dish photography, WebP at 400px and 800px
 assets/video/           Hero footage, MP4 + WebM at 1280px and 720px
 vercel.json             Cache headers and security headers
@@ -46,6 +47,28 @@ The video is `preload="none"` and only starts downloading once the hero scrolls
 into view. It is skipped entirely when the visitor prefers reduced motion or the
 Network Information API reports `saveData` or a 2G connection — the poster frame
 covers both cases.
+
+## Caching, and one bug it caused
+
+The stylesheet and scripts are served `no-cache`, so a browser revalidates them
+on every load and gets a cheap 304 when nothing changed. They also carry a `?v=`
+query in the markup. Bump it when you change `style.css`, `main.js` or `menu.js`.
+
+This is not belt-and-braces for its own sake. The first version of `vercel.json`
+cached CSS `max-age=3600`, which let a browser pair an hour-old stylesheet with
+freshly fetched HTML. When the hero gained a `<canvas>`, visitors on the stale
+CSS had no rule for it — an unstyled canvas is an in-flow block, the hero is a
+flex row, so the canvas became a 300px flex item and shoved the hero copy 280px
+to the right. Both canvases now carry an inline `position:absolute;inset:0` as a
+floor, so no future stylesheet skew can move the layout.
+
+## Fonts
+
+Plus Jakarta Sans is self-hosted from `assets/font/` as a 27 KB variable woff2,
+preloaded, `font-display: swap`. It was previously two Google Fonts origins and
+48 KB. Self-hosting also means local testing renders with the same metrics
+production does, which the Google Fonts version did not when the network was
+restricted.
 
 ## The ember field
 
@@ -89,6 +112,19 @@ Curves and durations are tokens in `:root`. The rules the code follows:
 `prefers-reduced-motion: reduce` keeps the fades that explain a state change and
 drops the movement: no video, no embers, no marquee, no float, no parallax, no
 fly-to-cart, no reveal translation.
+
+## Responsive behaviour
+
+The hero is the part that moves most:
+
+- Two columns (copy beside the service rail) only above 1180px. Below that the
+  rail drops under the copy, because 248px of card crowds the headline.
+- Landscape under 720px tall gets a shorter hero, a smaller title and service
+  cards without their descriptions, so the whole thing fits above the fold.
+- Under 620px the play control loses its visible label (it keeps its accessible
+  name) so it shares a row with the order button instead of taking its own, and
+  the top strip drops the delivery clause rather than wrapping to two lines.
+- Under 380px the card price and add button shrink so they stop competing.
 
 ## Accessibility
 

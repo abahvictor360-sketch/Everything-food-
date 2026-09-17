@@ -15,12 +15,9 @@
 <meta property="og:image" content="/assets/img/jollof-grilled-chicken.webp">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/font/plus-jakarta-sans.woff2" crossorigin>
 <link rel="preload" as="image" href="/assets/video/kitchen-poster.webp" fetchpriority="high">
-<link rel="stylesheet" href="/assets/css/style.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"></noscript>
+<link rel="stylesheet" href="/assets/css/style.css?v=3">
 <script>document.documentElement.classList.remove('no-js');</script>
 
 <script type="application/ld+json">
@@ -45,7 +42,7 @@
   <div class="shell topbar__inner">
     <p class="topbar__note">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-      Kitchen open daily, 8am – 11pm · Free delivery over ₦15,000
+      Kitchen open daily, 8am – 11pm<span class="topbar__extra"> · Free delivery over ₦15,000</span>
     </p>
     <ul class="topbar__links">
       <li><a href="tel:+2348012345678">+234 801 234 5678</a></li>
@@ -122,7 +119,7 @@
     <video id="hero-video" poster="/assets/video/kitchen-poster.webp" muted loop playsinline preload="none" hidden></video>
   </div>
   <div class="hero__scrim" aria-hidden="true"></div>
-  <canvas class="embers embers--hero" id="embers" aria-hidden="true"></canvas>
+  <canvas class="embers embers--hero" id="embers" aria-hidden="true" style="position:absolute;inset:0"></canvas>
 
   <div class="shell hero__inner">
     <div class="hero__copy">
@@ -152,8 +149,8 @@
           <span><b>Beef Suya</b><span>₦4,200</span></span>
         </li>
         <li class="chip">
-          <img src="/assets/img/puff-puff-sm.webp" alt="" width="42" height="42" loading="lazy" decoding="async">
-          <span><b>Puff-Puff</b><span>₦2,500</span></span>
+          <img src="/assets/img/masa-sm.webp" alt="" width="42" height="42" loading="lazy" decoding="async">
+          <span><b>Masa</b><span>₦2,500</span></span>
         </li>
         <li class="chip">
           <img src="/assets/img/chicken-and-chips-sm.webp" alt="" width="42" height="42" loading="lazy" decoding="async">
@@ -404,19 +401,19 @@
         </div>
       </article>
 
-      <article class="card reveal" style="--reveal-delay:180ms" data-cat="chops" data-name="Puff-Puff &amp; Suya Dip">
+      <article class="card reveal" style="--reveal-delay:180ms" data-cat="chops" data-name="Masa &amp; Suya Dip">
         <div class="card__media">
-          <img src="/assets/img/puff-puff.webp" alt="A platter of puff-puff arranged around a bowl of suya spice" width="800" height="803" loading="lazy" decoding="async">
-          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Puff-Puff and Suya Dip">
+          <img src="/assets/img/masa.webp" alt="A platter of masa rice cakes arranged around a bowl of suya spice" width="800" height="803" loading="lazy" decoding="async">
+          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Masa and Suya Dip">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
           </button>
         </div>
-        <h3 class="card__title">Puff-Puff &amp; Suya Dip</h3>
+        <h3 class="card__title">Masa &amp; Suya Dip</h3>
         <p class="card__rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.9 <span>(322)</span></p>
-        <p class="card__desc">A dozen, still warm, with a bowl of yaji for dipping. Shareable, in theory.</p>
+        <p class="card__desc">Fermented rice cakes off the griddle, with a bowl of yaji for dipping.</p>
         <div class="card__foot">
           <span class="card__price">₦2,500</span>
-          <button class="card__add" type="button" aria-label="Add Puff-Puff and Suya Dip to cart">
+          <button class="card__add" type="button" aria-label="Add Masa and Suya Dip to cart">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           </button>
         </div>
@@ -527,7 +524,7 @@
       </blockquote>
       <blockquote class="quote reveal" style="--reveal-delay:160ms">
         <span class="stars" aria-label="4 out of 5">★★★★☆</span>
-        <p>Rider got to Gwarinpa in 38 minutes during traffic, which I still do not understand. Food was hot. Only complaint is the puff-puff portion disappears too fast.</p>
+        <p>Rider got to Gwarinpa in 38 minutes during traffic, which I still do not understand. Food was hot. Only complaint is the masa portion disappears too fast.</p>
         <footer><span class="avatar" aria-hidden="true">NE</span><span><b>Ngozi Eze</b><span>Gwarinpa</span></span></footer>
       </blockquote>
     </div>
@@ -621,6 +618,6 @@
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
 </button>
 
-<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/main.js?v=3" defer></script>
 </body>
 </html>
