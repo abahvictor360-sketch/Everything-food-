@@ -119,9 +119,41 @@
     return !/^(slow-2g|2g)$/.test(c.effectiveType || '');
   }
 
+  function revealVideo() {
+    video.classList.add('is-ready');
+  }
+
+  function attemptPlay() {
+    var promise = video.play();
+
+    // Browsers older than the promise-returning play() give back undefined.
+    if (!promise || !promise.then) {
+      revealVideo();
+      setPlayState(true);
+      return;
+    }
+
+    promise.then(function () {
+      revealVideo();
+      setPlayState(true);
+    }).catch(function () {
+      // Autoplay refused, or load() interrupted this play(). Either way the
+      // poster stays up and the button is how the visitor starts it.
+      setPlayState(false);
+    });
+  }
+
   function loadVideo() {
     if (videoRequested) return;
     videoRequested = true;
+
+    // Listeners first: a cached file can reach a playable state quickly, and a
+    // listener attached after load() would miss the event that sets it going.
+    ['loadeddata', 'canplay', 'playing'].forEach(function (name) {
+      video.addEventListener(name, revealVideo);
+    });
+    video.addEventListener('playing', function () { setPlayState(true); });
+    video.addEventListener('error', failVideo);
 
     // Mobile gets the lighter file; the layout crops either one the same way.
     // MP4 is listed first because it is the smaller encode — WebM is only
@@ -135,23 +167,39 @@
       video.appendChild(source);
     });
 
-    video.hidden = false;
+    // preload="none" keeps the file off the initial load, but it also means the
+    // browser buffers nothing until something asks it to. Waiting for canplay
+    // before calling play() can therefore deadlock: no playback, so no
+    // buffering, so no canplay. Raise preload and start playback straight away.
+    video.preload = 'auto';
     video.load();
+    attemptPlay();
 
-    video.addEventListener('canplay', function () {
-      video.classList.add('is-ready');
-      var p = video.play();
-      if (p && p.catch) p.catch(function () { setPlayState(false); });
-      setPlayState(true);
-    }, { once: true });
+    // If none of the above has produced a frame, decide what actually happened
+    // rather than leaving a transparent video over the poster indefinitely.
+    setTimeout(function () {
+      if (video.classList.contains('is-ready')) return;
+      if (video.error || video.networkState === video.NETWORK_NO_SOURCE) {
+        failVideo();
+      } else if (video.readyState >= 2) {
+        revealVideo();
+      }
+    }, 5000);
+  }
+
+  function failVideo() {
+    // Nothing here is essential, so drop it and leave the poster in place.
+    video.classList.remove('is-ready');
+    setPlayState(false);
+    playBtn.hidden = true;
   }
 
   function setPlayState(playing) {
     playBtn.setAttribute('aria-pressed', String(playing));
     playLabel.textContent = playing ? 'Pause the kitchen' : 'Watch the kitchen';
-    playIcon.firstElementChild
-      ? playIcon.firstElementChild.setAttribute('d', playing ? PAUSE_PATH : PLAY_PATH)
-      : null;
+    if (playIcon.firstElementChild) {
+      playIcon.firstElementChild.setAttribute('d', playing ? PAUSE_PATH : PLAY_PATH);
+    }
   }
 
   if (video && playBtn) {
@@ -165,7 +213,9 @@
               heroObserver.disconnect();
             }
           });
-        }, { threshold: 0.15 });
+          // threshold 0: any sliver counts. A hero taller than the viewport can
+          // never reach a high ratio, and the hero is on screen at load anyway.
+        }, { threshold: 0 });
         heroObserver.observe($('.hero'));
       } else {
         loadVideo();
@@ -175,9 +225,7 @@
     playBtn.addEventListener('click', function () {
       if (!videoRequested) { loadVideo(); return; }
       if (video.paused) {
-        var p = video.play();
-        if (p && p.catch) p.catch(function () {});
-        setPlayState(true);
+        attemptPlay();
       } else {
         video.pause();
         setPlayState(false);
@@ -190,8 +238,7 @@
       if (document.hidden) {
         video.pause();
       } else if (playBtn.getAttribute('aria-pressed') === 'true') {
-        var p = video.play();
-        if (p && p.catch) p.catch(function () {});
+        attemptPlay();
       }
     });
   }

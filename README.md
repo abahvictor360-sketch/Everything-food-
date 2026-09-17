@@ -52,8 +52,15 @@ were re-encoded before being committed:
   720px. MP4 is listed first because it is the smaller encode; the WebM exists
   for browsers without an H.264 decoder.
 
-The video is `preload="none"` and only starts downloading once the hero scrolls
-into view. It is skipped entirely when the visitor prefers reduced motion or the
+The video is `preload="none"` in the markup and only starts downloading once the
+hero scrolls into view. At that point the script raises `preload` to `auto` and
+calls `play()` straight after `load()`, rather than waiting for `canplay` first.
+Waiting is the obvious-looking order and it can deadlock: with `preload="none"`
+a browser buffers nothing until playback asks it to, so `canplay` may never
+arrive and `play()` is never reached. The element reveals on the first of
+`loadeddata`, `canplay` or `playing`, and a 5s watchdog either reveals it or
+gives up and hides the play control, so a video that cannot decode leaves the
+poster in place instead of a transparent element over it. It is skipped entirely when the visitor prefers reduced motion or the
 Network Information API reports `saveData` or a 2G connection — the poster frame
 covers both cases.
 
