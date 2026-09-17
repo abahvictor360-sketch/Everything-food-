@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://everything-food.vercel.app/sitemap.xml
+Sitemap: https://everything-food-eta.vercel.app/sitemap.xml
