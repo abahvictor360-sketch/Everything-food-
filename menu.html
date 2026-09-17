@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu — Everything Food, Wuse 2 Abuja</title>
+<meta name="description" content="The full Everything Food menu: rice, soups, stew, starters, pasta, protein, extras, pastries and drinks, with 2L and 4L portion prices. Wuse 2, Abuja.">
+<meta name="theme-color" content="#2E0D0D">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://everything-food-eta.vercel.app/menu">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Menu — Everything Food">
+<meta property="og:description" content="Rice, soups, stew, starters, pasta, protein, extras, pastries and drinks. Kitchen that meets your taste bud choice.">
+<meta property="og:image" content="/assets/img/egusi-soup-fufu.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"></noscript>
+<script>document.documentElement.classList.remove('no-js');</script>
+</head>
+<body class="page-menu">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ============================ Top strip ============================ -->
+<div class="topbar">
+  <div class="shell topbar__inner">
+    <p class="topbar__note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      Kitchen open daily, 8am – 11pm · Free delivery over ₦15,000
+    </p>
+    <ul class="topbar__links">
+      <li><a href="tel:+2348012345678">+234 801 234 5678</a></li>
+      <li><a href="/#contact">Track order</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================ Header ============================ -->
+<header class="site-header" id="header">
+  <div class="shell site-header__inner">
+    <a class="brand" href="/" aria-label="Everything Food, home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 10v11"/><path d="M17.5 3C16 5 15.5 7 15.5 9.5c0 1.4.9 2.5 2 2.5h1V3z"/><path d="M17.5 12v9"/></svg>
+      </span>
+      <span class="brand__text">
+        <b>Everything Food</b>
+        <span>Naija Kitchen</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="/" data-nav aria-current="false">Home</a></li>
+        <li><a class="nav__link" href="/menu" data-nav aria-current="true">Menu</a></li>
+        <li><a class="nav__link" href="/#services" data-nav>Services</a></li>
+        <li><a class="nav__link" href="/#contact" data-nav>Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__tools">
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label class="sr-only" for="q">Search the menu</label>
+        <input id="q" type="search" placeholder="Search jollof, suya…" autocomplete="off">
+      </div>
+
+      <button class="icon-btn" id="cart" type="button" aria-label="Cart, 0 items">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+        <span class="cart-count" id="cart-count" aria-hidden="true">0</span>
+      </button>
+
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" aria-label="Mobile navigation" aria-hidden="true">
+  <a class="brand" href="/">
+    <span class="brand__mark" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 10v11"/><path d="M17.5 3C16 5 15.5 7 15.5 9.5c0 1.4.9 2.5 2 2.5h1V3z"/><path d="M17.5 12v9"/></svg>
+    </span>
+    <span class="brand__text"><b>Everything Food</b><span>Naija Kitchen</span></span>
+  </a>
+  <nav class="drawer__list" aria-label="Mobile">
+    <a href="/">Home</a>
+    <a href="/menu">Menu</a>
+    <a href="/#popular">Popular</a>
+    <a href="/#services">Services</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+  <a class="btn btn--primary" href="/menu" style="margin-top:1.75rem">
+    Order now
+    <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+  </a>
+</aside>
+
+
+<main id="main">
+
+<!-- ============================ Menu masthead ============================ -->
+<section class="masthead" id="top">
+  <canvas class="embers" id="embers" aria-hidden="true"></canvas>
+  <div class="shell masthead__inner">
+    <p class="eyebrow reveal">Wuse 2, Abuja</p>
+    <h1 class="masthead__title reveal" style="--reveal-delay:60ms">Food <em>Menu</em></h1>
+    <p class="masthead__rule reveal" style="--reveal-delay:100ms" aria-hidden="true"></p>
+    <p class="masthead__sub reveal" style="--reveal-delay:140ms">
+      Kitchen that meets your taste bud choice. Trays come in 2L and 4L; everything else is
+      priced per portion. Tap a price to drop it in your order.
+    </p>
+  </div>
+</section>
+
+<nav class="mnav" id="mnav" aria-label="Menu categories">
+  <div class="shell mnav__inner">
+    <div class="mnav__chips" id="mnav-chips"><a class="mchip" href="#rice">Rice</a><a class="mchip" href="#soups">Soups</a><a class="mchip" href="#stew">Stew</a><a class="mchip" href="#starters">Starters</a><a class="mchip" href="#pasta">Pasta</a><a class="mchip" href="#protein">Protein</a><a class="mchip" href="#extras">Extras</a><a class="mchip" href="#pastries">Pastries</a><a class="mchip" href="#drinks">Drinks</a></div>
+    <p class="mnav__count" id="mnav-count" role="status" aria-live="polite"></p>
+  </div>
+</nav>
+
+<div class="shell menu-page">
+
+<section class="msection reveal" id="rice">
+  <div class="msection__media">
+    <img src="/assets/img/jollof-grilled-chicken.webp" alt="Party jollof rice with grilled chicken and fried plantain" width="800" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="msection__body">
+    <div class="mhead">
+      <h2>Rice</h2>
+      <div class="mhead__units" aria-hidden="true"><span>2L</span><span>4L</span></div>
+    </div>
+    <ul class="mlist">
+        <li class="mitem" data-search="jollof rice">
+          <span class="mitem__name">Jollof Rice</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Jollof Rice" data-unit="2L" data-price="16,000" aria-label="Add Jollof Rice, 2L, 16,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦16,000</span></button><button class="mitem__price" type="button" data-name="Jollof Rice" data-unit="4L" data-price="31,000" aria-label="Add Jollof Rice, 4L, 31,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦31,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="fried rice">
+          <span class="mitem__name">Fried Rice</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Fried Rice" data-unit="2L" data-price="22,000" aria-label="Add Fried Rice, 2L, 22,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦22,000</span></button><button class="mitem__price" type="button" data-name="Fried Rice" data-unit="4L" data-price="43,000" aria-label="Add Fried Rice, 4L, 43,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦43,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="native rice">
+          <span class="mitem__name">Native Rice</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Native Rice" data-unit="2L" data-price="19,000" aria-label="Add Native Rice, 2L, 19,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦19,000</span></button><button class="mitem__price" type="button" data-name="Native Rice" data-unit="4L" data-price="37,000" aria-label="Add Native Rice, 4L, 37,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦37,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="coconut rice">
+          <span class="mitem__name">Coconut Rice</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Coconut Rice" data-unit="2L" data-price="19,000" aria-label="Add Coconut Rice, 2L, 19,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦19,000</span></button><button class="mitem__price" type="button" data-name="Coconut Rice" data-unit="4L" data-price="37,000" aria-label="Add Coconut Rice, 4L, 37,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦37,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="basmati jollof">
+          <span class="mitem__name">Basmati Jollof</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Basmati Jollof" data-unit="2L" data-price="19,000" aria-label="Add Basmati Jollof, 2L, 19,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦19,000</span></button><button class="mitem__price" type="button" data-name="Basmati Jollof" data-unit="4L" data-price="37,000" aria-label="Add Basmati Jollof, 4L, 37,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦37,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="asun rice">
+          <span class="mitem__name">Asun Rice</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Asun Rice" data-unit="2L" data-price="25,000" aria-label="Add Asun Rice, 2L, 25,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦25,000</span></button><button class="mitem__price" type="button" data-name="Asun Rice" data-unit="4L" data-price="49,000" aria-label="Add Asun Rice, 4L, 49,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦49,000</span></button></span>
+        </li>
+    </ul>
+  </div>
+</section>
+<section class="msection msection--flip reveal" id="soups">
+  <div class="msection__media">
+    <img src="/assets/img/egusi-soup-fufu.webp" alt="Egusi soup in a clay bowl beside two moulds of pounded yam" width="800" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="msection__body">
+    <div class="mhead">
+      <h2>Soups</h2>
+      <div class="mhead__units" aria-hidden="true"><span>2L</span><span>4L</span></div>
+    </div>
+    <ul class="mlist">
+        <li class="mitem" data-search="egusi">
+          <span class="mitem__name">Egusi</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Egusi" data-unit="2L" data-price="26,000" aria-label="Add Egusi, 2L, 26,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦26,000</span></button><button class="mitem__price" type="button" data-name="Egusi" data-unit="4L" data-price="49,000" aria-label="Add Egusi, 4L, 49,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦49,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="ogbono">
+          <span class="mitem__name">Ogbono</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Ogbono" data-unit="2L" data-price="27,000" aria-label="Add Ogbono, 2L, 27,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦27,000</span></button><button class="mitem__price" type="button" data-name="Ogbono" data-unit="4L" data-price="52,000" aria-label="Add Ogbono, 4L, 52,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦52,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="okro">
+          <span class="mitem__name">Okro</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Okro" data-unit="2L" data-price="25,000" aria-label="Add Okro, 2L, 25,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦25,000</span></button><button class="mitem__price" type="button" data-name="Okro" data-unit="4L" data-price="49,000" aria-label="Add Okro, 4L, 49,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦49,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="oha">
+          <span class="mitem__name">Oha</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Oha" data-unit="2L" data-price="27,000" aria-label="Add Oha, 2L, 27,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦27,000</span></button><button class="mitem__price" type="button" data-name="Oha" data-unit="4L" data-price="51,000" aria-label="Add Oha, 4L, 51,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦51,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="afang">
+          <span class="mitem__name">Afang</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Afang" data-unit="2L" data-price="27,000" aria-label="Add Afang, 2L, 27,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦27,000</span></button><button class="mitem__price" type="button" data-name="Afang" data-unit="4L" data-price="51,000" aria-label="Add Afang, 4L, 51,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦51,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="banga">
+          <span class="mitem__name">Banga</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Banga" data-unit="2L" data-price="27,000" aria-label="Add Banga, 2L, 27,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦27,000</span></button><button class="mitem__price" type="button" data-name="Banga" data-unit="4L" data-price="51,000" aria-label="Add Banga, 4L, 51,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦51,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="efo riro">
+          <span class="mitem__name">Efo Riro</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Efo Riro" data-unit="2L" data-price="26,000" aria-label="Add Efo Riro, 2L, 26,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦26,000</span></button><button class="mitem__price" type="button" data-name="Efo Riro" data-unit="4L" data-price="50,000" aria-label="Add Efo Riro, 4L, 50,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦50,000</span></button></span>
+        </li>
+    </ul>
+  </div>
+</section>
+<section class="msection reveal" id="stew">
+  <div class="msection__media">
+    <img src="/assets/img/goat-meat-stew.webp" alt="Goat meat stewed with garden egg and greens" width="800" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="msection__body">
+    <div class="mhead">
+      <h2>Stew</h2>
+      <div class="mhead__units" aria-hidden="true"><span>2L</span><span>4L</span></div>
+    </div>
+    <ul class="mlist">
+        <li class="mitem" data-search="chicken / beef">
+          <span class="mitem__name">Chicken / Beef</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Chicken / Beef" data-unit="2L" data-price="25,000" aria-label="Add Chicken / Beef, 2L, 25,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦25,000</span></button><button class="mitem__price" type="button" data-name="Chicken / Beef" data-unit="4L" data-price="49,000" aria-label="Add Chicken / Beef, 4L, 49,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦49,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="turkey">
+          <span class="mitem__name">Turkey</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Turkey" data-unit="2L" data-price="28,000" aria-label="Add Turkey, 2L, 28,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦28,000</span></button><button class="mitem__price" type="button" data-name="Turkey" data-unit="4L" data-price="55,000" aria-label="Add Turkey, 4L, 55,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦55,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="goat meat">
+          <span class="mitem__name">Goat Meat</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Goat Meat" data-unit="2L" data-price="27,000" aria-label="Add Goat Meat, 2L, 27,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦27,000</span></button><button class="mitem__price" type="button" data-name="Goat Meat" data-unit="4L" data-price="53,000" aria-label="Add Goat Meat, 4L, 53,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦53,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="snail">
+          <span class="mitem__name">Snail</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Snail" data-unit="2L" data-price="36,000" aria-label="Add Snail, 2L, 36,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦36,000</span></button><button class="mitem__price" type="button" data-name="Snail" data-unit="4L" data-price="69,000" aria-label="Add Snail, 4L, 69,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦69,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="fresh fish">
+          <span class="mitem__name">Fresh Fish</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Fresh Fish" data-unit="2L" data-price="27,000" aria-label="Add Fresh Fish, 2L, 27,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦27,000</span></button><button class="mitem__price" type="button" data-name="Fresh Fish" data-unit="4L" data-price="53,000" aria-label="Add Fresh Fish, 4L, 53,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦53,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="ayamase">
+          <span class="mitem__name">Ayamase</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Ayamase" data-unit="2L" data-price="28,000" aria-label="Add Ayamase, 2L, 28,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦28,000</span></button><button class="mitem__price" type="button" data-name="Ayamase" data-unit="4L" data-price="55,000" aria-label="Add Ayamase, 4L, 55,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦55,000</span></button></span>
+        </li>
+    </ul>
+  </div>
+</section>
+<section class="msection msection--flip reveal" id="starters">
+  <div class="msection__media">
+    <img src="/assets/img/assorted-pepper-soup.webp" alt="Assorted meat pepper soup in a wide white bowl" width="800" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="msection__body">
+    <div class="mhead">
+      <h2>Starters</h2>
+      <div class="mhead__units" aria-hidden="true"><span>5 pcs</span><span>10 pcs</span></div>
+    </div>
+    <ul class="mlist">
+        <li class="mitem" data-search="catfish pepper soup">
+          <span class="mitem__name">Catfish Pepper Soup</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Catfish Pepper Soup" data-unit="5 pcs" data-price="22,000" aria-label="Add Catfish Pepper Soup, 5 pcs, 22,000 naira, to your order"><span class="mitem__unit">5 pcs</span><span class="mitem__amount">₦22,000</span></button><button class="mitem__price" type="button" data-name="Catfish Pepper Soup" data-unit="10 pcs" data-price="42,000" aria-label="Add Catfish Pepper Soup, 10 pcs, 42,000 naira, to your order"><span class="mitem__unit">10 pcs</span><span class="mitem__amount">₦42,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="chicken pepper soup">
+          <span class="mitem__name">Chicken Pepper Soup</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Chicken Pepper Soup" data-unit="5 pcs" data-price="22,000" aria-label="Add Chicken Pepper Soup, 5 pcs, 22,000 naira, to your order"><span class="mitem__unit">5 pcs</span><span class="mitem__amount">₦22,000</span></button><button class="mitem__price" type="button" data-name="Chicken Pepper Soup" data-unit="10 pcs" data-price="42,000" aria-label="Add Chicken Pepper Soup, 10 pcs, 42,000 naira, to your order"><span class="mitem__unit">10 pcs</span><span class="mitem__amount">₦42,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="turkey pepper soup">
+          <span class="mitem__name">Turkey Pepper Soup</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Turkey Pepper Soup" data-unit="5 pcs" data-price="27,000" aria-label="Add Turkey Pepper Soup, 5 pcs, 27,000 naira, to your order"><span class="mitem__unit">5 pcs</span><span class="mitem__amount">₦27,000</span></button><button class="mitem__price" type="button" data-name="Turkey Pepper Soup" data-unit="10 pcs" data-price="52,000" aria-label="Add Turkey Pepper Soup, 10 pcs, 52,000 naira, to your order"><span class="mitem__unit">10 pcs</span><span class="mitem__amount">₦52,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="goat meat pepper soup">
+          <span class="mitem__name">Goat Meat Pepper Soup</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Goat Meat Pepper Soup" data-unit="5 pcs" data-price="27,000" aria-label="Add Goat Meat Pepper Soup, 5 pcs, 27,000 naira, to your order"><span class="mitem__unit">5 pcs</span><span class="mitem__amount">₦27,000</span></button><button class="mitem__price" type="button" data-name="Goat Meat Pepper Soup" data-unit="10 pcs" data-price="51,000" aria-label="Add Goat Meat Pepper Soup, 10 pcs, 51,000 naira, to your order"><span class="mitem__unit">10 pcs</span><span class="mitem__amount">₦51,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="assorted pepper soup">
+          <span class="mitem__name">Assorted Pepper Soup</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Assorted Pepper Soup" data-unit="5 pcs" data-price="27,000" aria-label="Add Assorted Pepper Soup, 5 pcs, 27,000 naira, to your order"><span class="mitem__unit">5 pcs</span><span class="mitem__amount">₦27,000</span></button><button class="mitem__price" type="button" data-name="Assorted Pepper Soup" data-unit="10 pcs" data-price="51,000" aria-label="Add Assorted Pepper Soup, 10 pcs, 51,000 naira, to your order"><span class="mitem__unit">10 pcs</span><span class="mitem__amount">₦51,000</span></button></span>
+        </li>
+    </ul>
+  </div>
+</section>
+<section class="msection reveal" id="pasta">
+  <div class="msection__media">
+    <img src="/assets/img/jollof-spaghetti.webp" alt="Jollof spaghetti tossed with peppers and spring onion" width="800" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="msection__body">
+    <div class="mhead">
+      <h2>Pasta</h2>
+      <div class="mhead__units" aria-hidden="true"><span>2L</span><span>4L</span></div>
+    </div>
+    <ul class="mlist">
+        <li class="mitem" data-search="jollof spaghetti">
+          <span class="mitem__name">Jollof Spaghetti</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Jollof Spaghetti" data-unit="2L" data-price="16,000" aria-label="Add Jollof Spaghetti, 2L, 16,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦16,000</span></button><button class="mitem__price" type="button" data-name="Jollof Spaghetti" data-unit="4L" data-price="31,000" aria-label="Add Jollof Spaghetti, 4L, 31,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦31,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="native spaghetti">
+          <span class="mitem__name">Native Spaghetti</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Native Spaghetti" data-unit="2L" data-price="18,000" aria-label="Add Native Spaghetti, 2L, 18,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦18,000</span></button><button class="mitem__price" type="button" data-name="Native Spaghetti" data-unit="4L" data-price="35,000" aria-label="Add Native Spaghetti, 4L, 35,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦35,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="stir-fry noodles">
+          <span class="mitem__name">Stir-Fry Noodles</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Stir-Fry Noodles" data-unit="2L" data-price="15,000" aria-label="Add Stir-Fry Noodles, 2L, 15,000 naira, to your order"><span class="mitem__unit">2L</span><span class="mitem__amount">₦15,000</span></button><button class="mitem__price" type="button" data-name="Stir-Fry Noodles" data-unit="4L" data-price="29,000" aria-label="Add Stir-Fry Noodles, 4L, 29,000 naira, to your order"><span class="mitem__unit">4L</span><span class="mitem__amount">₦29,000</span></button></span>
+        </li>
+    </ul>
+  </div>
+</section>
+<section class="msection msection--flip reveal" id="protein">
+  <div class="msection__media">
+    <img src="/assets/img/suya-skewers.webp" alt="Beef suya skewers plated with chips and fresh salad" width="800" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="msection__body">
+    <div class="mhead">
+      <h2>Protein</h2>
+      
+    </div>
+    <ul class="mlist">
+        <li class="mitem" data-search="ponmo · 5 pcs">
+          <span class="mitem__name">Ponmo · 5 pcs</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Ponmo · 5 pcs" data-unit="" data-price="1,200" aria-label="Add Ponmo · 5 pcs, 1,200 naira, to your order"><span class="mitem__amount">₦1,200</span></button></span>
+        </li>
+        <li class="mitem" data-search="beef · 3 pcs">
+          <span class="mitem__name">Beef · 3 pcs</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Beef · 3 pcs" data-unit="" data-price="1,500" aria-label="Add Beef · 3 pcs, 1,500 naira, to your order"><span class="mitem__amount">₦1,500</span></button></span>
+        </li>
+        <li class="mitem" data-search="crispy chicken · 1">
+          <span class="mitem__name">Crispy Chicken · 1</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Crispy Chicken · 1" data-unit="" data-price="2,000" aria-label="Add Crispy Chicken · 1, 2,000 naira, to your order"><span class="mitem__amount">₦2,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="peppered chicken · 1">
+          <span class="mitem__name">Peppered Chicken · 1</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Peppered Chicken · 1" data-unit="" data-price="2,000" aria-label="Add Peppered Chicken · 1, 2,000 naira, to your order"><span class="mitem__amount">₦2,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="turkey · 1">
+          <span class="mitem__name">Turkey · 1</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Turkey · 1" data-unit="" data-price="5,000" aria-label="Add Turkey · 1, 5,000 naira, to your order"><span class="mitem__amount">₦5,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="grilled tilapia · 1">
+          <span class="mitem__name">Grilled Tilapia · 1</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Grilled Tilapia · 1" data-unit="" data-price="8,900" aria-label="Add Grilled Tilapia · 1, 8,900 naira, to your order"><span class="mitem__amount">₦8,900</span></button></span>
+        </li>
+        <li class="mitem" data-search="egg">
+          <span class="mitem__name">Egg</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Egg" data-unit="" data-price="500" aria-label="Add Egg, 500 naira, to your order"><span class="mitem__amount">₦500</span></button></span>
+        </li>
+        <li class="mitem" data-search="coleslaw">
+          <span class="mitem__name">Coleslaw</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Coleslaw" data-unit="" data-price="1,000" aria-label="Add Coleslaw, 1,000 naira, to your order"><span class="mitem__amount">₦1,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="chicken salad">
+          <span class="mitem__name">Chicken Salad</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Chicken Salad" data-unit="" data-price="2,500" aria-label="Add Chicken Salad, 2,500 naira, to your order"><span class="mitem__amount">₦2,500</span></button></span>
+        </li>
+    </ul>
+  </div>
+</section>
+<section class="msection reveal" id="extras">
+  <div class="msection__media">
+    <img src="/assets/img/rice-beans-plantain.webp" alt="Rice and beans with plantain and stewed chicken" width="800" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="msection__body">
+    <div class="mhead">
+      <h2>Extras</h2>
+      
+    </div>
+    <ul class="mlist">
+        <li class="mitem" data-search="white rice">
+          <span class="mitem__name">White Rice</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="White Rice" data-unit="" data-price="3,500" aria-label="Add White Rice, 3,500 naira, to your order"><span class="mitem__amount">₦3,500</span></button></span>
+        </li>
+        <li class="mitem" data-search="beans">
+          <span class="mitem__name">Beans</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Beans" data-unit="" data-price="9,000" aria-label="Add Beans, 9,000 naira, to your order"><span class="mitem__amount">₦9,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="swallow">
+          <span class="mitem__name">Swallow</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Swallow" data-unit="" data-price="1,500" aria-label="Add Swallow, 1,500 naira, to your order"><span class="mitem__amount">₦1,500</span></button></span>
+        </li>
+        <li class="mitem" data-search="moi moi · 10 pcs">
+          <span class="mitem__name">Moi Moi · 10 pcs</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Moi Moi · 10 pcs" data-unit="" data-price="5,000" aria-label="Add Moi Moi · 10 pcs, 5,000 naira, to your order"><span class="mitem__amount">₦5,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="plantain · 4 portions">
+          <span class="mitem__name">Plantain · 4 portions</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Plantain · 4 portions" data-unit="" data-price="1,000" aria-label="Add Plantain · 4 portions, 1,000 naira, to your order"><span class="mitem__amount">₦1,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="yam &amp; egg sauce">
+          <span class="mitem__name">Yam &amp; Egg Sauce</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Yam &amp; Egg Sauce" data-unit="" data-price="3,400" aria-label="Add Yam &amp; Egg Sauce, 3,400 naira, to your order"><span class="mitem__amount">₦3,400</span></button></span>
+        </li>
+        <li class="mitem" data-search="asaro · yam porridge">
+          <span class="mitem__name">Asaro · Yam Porridge</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Asaro · Yam Porridge" data-unit="" data-price="3,800" aria-label="Add Asaro · Yam Porridge, 3,800 naira, to your order"><span class="mitem__amount">₦3,800</span></button></span>
+        </li>
+    </ul>
+  </div>
+</section>
+<section class="msection msection--flip reveal" id="pastries">
+  <div class="msection__media">
+    <img src="/assets/img/meat-pie.webp" alt="A bowl of golden Nigerian meat pies" width="800" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="msection__body">
+    <div class="mhead">
+      <h2>Pastries</h2>
+      
+    </div>
+    <ul class="mlist">
+        <li class="mitem" data-search="doughnut">
+          <span class="mitem__name">Doughnut</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Doughnut" data-unit="" data-price="700" aria-label="Add Doughnut, 700 naira, to your order"><span class="mitem__amount">₦700</span></button></span>
+        </li>
+        <li class="mitem" data-search="chicken pie">
+          <span class="mitem__name">Chicken Pie</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Chicken Pie" data-unit="" data-price="900" aria-label="Add Chicken Pie, 900 naira, to your order"><span class="mitem__amount">₦900</span></button></span>
+        </li>
+        <li class="mitem" data-search="meat pie">
+          <span class="mitem__name">Meat Pie</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Meat Pie" data-unit="" data-price="900" aria-label="Add Meat Pie, 900 naira, to your order"><span class="mitem__amount">₦900</span></button></span>
+        </li>
+        <li class="mitem" data-search="sausage roll">
+          <span class="mitem__name">Sausage Roll</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Sausage Roll" data-unit="" data-price="900" aria-label="Add Sausage Roll, 900 naira, to your order"><span class="mitem__amount">₦900</span></button></span>
+        </li>
+        <li class="mitem" data-search="puff-puff · dozen">
+          <span class="mitem__name">Puff-Puff · dozen</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Puff-Puff · dozen" data-unit="" data-price="2,500" aria-label="Add Puff-Puff · dozen, 2,500 naira, to your order"><span class="mitem__amount">₦2,500</span></button></span>
+        </li>
+        <li class="mitem" data-search="small chops">
+          <span class="mitem__name">Small Chops</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Small Chops" data-unit="" data-price="2,500" aria-label="Add Small Chops, 2,500 naira, to your order"><span class="mitem__amount">₦2,500</span></button></span>
+        </li>
+        <li class="mitem" data-search="burger">
+          <span class="mitem__name">Burger</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Burger" data-unit="" data-price="7,000" aria-label="Add Burger, 7,000 naira, to your order"><span class="mitem__amount">₦7,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="pizza">
+          <span class="mitem__name">Pizza</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Pizza" data-unit="" data-price="8,000" aria-label="Add Pizza, 8,000 naira, to your order"><span class="mitem__amount">₦8,000</span></button></span>
+        </li>
+    </ul>
+  </div>
+</section>
+<section class="msection reveal" id="drinks">
+  <div class="msection__media">
+    <img src="/assets/img/chapman-drinks.webp" alt="Cups of chilled Chapman with fruit" width="800" height="800" loading="lazy" decoding="async">
+  </div>
+  <div class="msection__body">
+    <div class="mhead">
+      <h2>Drinks</h2>
+      
+    </div>
+    <ul class="mlist">
+        <li class="mitem" data-search="chapman">
+          <span class="mitem__name">Chapman</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Chapman" data-unit="" data-price="1,500" aria-label="Add Chapman, 1,500 naira, to your order"><span class="mitem__amount">₦1,500</span></button></span>
+        </li>
+        <li class="mitem" data-search="zobo">
+          <span class="mitem__name">Zobo</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Zobo" data-unit="" data-price="1,000" aria-label="Add Zobo, 1,000 naira, to your order"><span class="mitem__amount">₦1,000</span></button></span>
+        </li>
+        <li class="mitem" data-search="malt">
+          <span class="mitem__name">Malt</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Malt" data-unit="" data-price="1,200" aria-label="Add Malt, 1,200 naira, to your order"><span class="mitem__amount">₦1,200</span></button></span>
+        </li>
+        <li class="mitem" data-search="fresh juice">
+          <span class="mitem__name">Fresh Juice</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Fresh Juice" data-unit="" data-price="1,800" aria-label="Add Fresh Juice, 1,800 naira, to your order"><span class="mitem__amount">₦1,800</span></button></span>
+        </li>
+        <li class="mitem" data-search="bottled water">
+          <span class="mitem__name">Bottled Water</span>
+          <span class="mitem__leader" aria-hidden="true"></span>
+          <span class="mitem__prices"><button class="mitem__price" type="button" data-name="Bottled Water" data-unit="" data-price="500" aria-label="Add Bottled Water, 500 naira, to your order"><span class="mitem__amount">₦500</span></button></span>
+        </li>
+    </ul>
+  </div>
+</section>
+
+  <aside class="promo-strip reveal">
+    <span class="promo-strip__tag">Promo</span>
+    <p>Every order above <b>₦20,000</b> gets a free malt added to the bag. No code, no asking.</p>
+  </aside>
+
+  <p class="menu-note reveal">
+    Trays are cooked to order, so give us a few hours' notice on 4L. Prices include packaging.
+    Delivery is charged separately and is free anywhere in Wuse, Maitama and Garki on orders
+    over ₦15,000.
+  </p>
+</div>
+</main>
+
+<!-- ============================ Footer ============================ -->
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer">
+        <a class="brand" href="/">
+          <span class="brand__mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 10v11"/><path d="M17.5 3C16 5 15.5 7 15.5 9.5c0 1.4.9 2.5 2 2.5h1V3z"/><path d="M17.5 12v9"/></svg>
+          </span>
+          <span class="brand__text"><b>Everything Food</b><span>Naija Kitchen</span></span>
+        </a>
+        <p class="footer__about">Nigerian cooking without shortcuts, from a kitchen on Aminu Kano Crescent, Wuse 2. Open every day, 8am to 11pm.</p>
+        <div class="socials">
+          <a href="#" aria-label="Everything Food on Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+          <a href="#" aria-label="Everything Food on X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.2 22H1.9l7.7-8.8L1 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg></a>
+          <a href="#" aria-label="Everything Food on WhatsApp"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 20.5l1.6-5.5A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.6 9.2c.3 2.6 2.8 5 5.4 5.4l1-1.4 1.8.9c-.3 1.2-1.6 1.6-2.8 1.3-3-.7-5.5-3.2-6.2-6.2-.3-1.2.1-2.5 1.3-2.8l.9 1.8z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer">
+        <h4>Menu</h4>
+        <nav class="footer__links" aria-label="Menu categories">
+          <a href="/menu">Rice &amp; Pasta</a>
+          <a href="/menu">Swallow &amp; Soups</a>
+          <a href="/menu">Grills &amp; Suya</a>
+          <a href="/menu">Small Chops</a>
+          <a href="/#popular">Drinks</a>
+        </nav>
+      </div>
+
+      <div class="footer">
+        <h4>Company</h4>
+        <nav class="footer__links" aria-label="Company">
+          <a href="#">Our story</a>
+          <a href="#">Catering &amp; events</a>
+          <a href="#">Ride with us</a>
+          <a href="#">Careers</a>
+        </nav>
+      </div>
+
+      <div class="footer">
+        <h4>Visit</h4>
+        <div class="footer__links">
+          <span>12 Aminu Kano Crescent<br>Wuse 2, Abuja</span>
+          <a href="tel:+2348012345678">+234 801 234 5678</a>
+          <a href="mailto:hello@everythingfood.ng">hello@everythingfood.ng</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__base">
+      <span>© <span id="year">2026</span> Everything Food. All rights reserved.</span>
+      <span>Built in Abuja.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span id="toast-text"></span></div>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
+</button>
+
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span id="toast-text"></span></div>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
+</button>
+
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/menu.js" defer></script>
+</body>
+</html>

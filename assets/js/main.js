@@ -49,6 +49,7 @@
   var header = $('#header');
   var progress = $('#progress');
   var toTop = $('#to-top');
+  var parallax = $('.hero__media');
   var ticking = false;
 
   function onScroll() {
@@ -58,6 +59,12 @@
     header.classList.toggle('is-stuck', y > 8);
     toTop.classList.toggle('is-on', y > 700);
     progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+
+    // Hero footage drifts slower than the page. Transform only, and only while
+    // the hero is still on screen.
+    if (parallax && !reduceMotion.matches && y < window.innerHeight) {
+      parallax.style.transform = 'scale(1.12) translate3d(0, ' + (y * 0.14) + 'px, 0)';
+    }
     ticking = false;
   }
   window.addEventListener('scroll', function () {
@@ -232,26 +239,36 @@
     toastTimer = setTimeout(function () { toast.classList.remove('is-on'); }, 2400);
   }
 
+  function addToCart(name) {
+    count += 1;
+    cartCount.textContent = String(count);
+    cartCount.classList.add('is-on');
+    cartBtn.setAttribute('aria-label', 'Cart, ' + count + (count === 1 ? ' item' : ' items'));
+
+    // Bump as a transition so rapid clicks retarget instead of restarting.
+    cartCount.classList.add('is-bumped');
+    setTimeout(function () { cartCount.classList.remove('is-bumped'); }, 160);
+
+    showToast(name + ' added to your order');
+  }
+
   $$('.card__add').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var card = btn.closest('.card');
-      var name = card.dataset.name.replace(/&amp;/g, '&');
-
-      count += 1;
-      cartCount.textContent = String(count);
-      cartCount.classList.add('is-on');
-      cartBtn.setAttribute('aria-label', 'Cart, ' + count + (count === 1 ? ' item' : ' items'));
-
-      // Bump as a transition so rapid clicks retarget instead of restarting.
-      cartCount.classList.add('is-bumped');
-      setTimeout(function () { cartCount.classList.remove('is-bumped'); }, 160);
+      addToCart(card.dataset.name.replace(/&amp;/g, '&'));
 
       btn.classList.add('is-added');
       setTimeout(function () { btn.classList.remove('is-added'); }, 700);
-
-      showToast(name + ' added to your order');
     });
   });
+
+  // The menu page drives the same cart and toast from its own script.
+  window.EF = {
+    addToCart: addToCart,
+    showToast: showToast,
+    cartButton: cartBtn,
+    reduceMotion: reduceMotion,
+  };
 
   $$('.card__fav').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -289,6 +306,8 @@
       }
     });
 
+    if (!status) return;
+
     if (shown === cards.length) {
       status.textContent = '';
     } else if (shown === 0) {
@@ -309,7 +328,7 @@
   });
 
   var searchTimer;
-  if (searchInput) {
+  if (searchInput && cards.length) {
     searchInput.addEventListener('input', function () {
       clearTimeout(searchTimer);
       searchTimer = setTimeout(function () {
@@ -405,6 +424,40 @@
       if (valid) { form.reset(); showToast('You are on the Friday list'); }
       else { email.focus(); }
     });
+  }
+
+  /* ----------------------------------------------------------- WebGL embers */
+  // A spark field over the hero. Decorative, so it loads last, only on hardware
+  // and connections that can carry it, and never against a reduced-motion
+  // preference. A failed import leaves the page exactly as it was.
+  var emberCanvas = $('#embers');
+
+  function embersAreAffordable() {
+    if (!emberCanvas || reduceMotion.matches) return false;
+    if (!window.matchMedia('(min-width: 720px)').matches) return false;
+    if (navigator.deviceMemory && navigator.deviceMemory < 4) return false;
+    if (!connectionAllowsVideo()) return false;
+    try {
+      var probe = document.createElement('canvas');
+      return !!(probe.getContext('webgl2') || probe.getContext('webgl'));
+    } catch (e) {
+      return false;
+    }
+  }
+
+  if (embersAreAffordable()) {
+    var loadEmbers = function () {
+      import('/assets/js/embers.js')
+        .then(function (mod) { mod.createEmbers(emberCanvas); })
+        .catch(function () { emberCanvas.remove(); });
+    };
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadEmbers, { timeout: 2500 });
+    } else {
+      setTimeout(loadEmbers, 1200);
+    }
+  } else if (emberCanvas) {
+    emberCanvas.remove();
   }
 
   /* ------------------------------------------------------------------ Misc */

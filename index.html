@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Everything Food — Nigerian Kitchen, Delivered Hot</title>
-<meta name="description" content="Everything Food cooks jollof, swallow, pepper soup, suya and small chops to order, then gets them to your door across Lagos in under 45 minutes.">
+<meta name="description" content="Everything Food cooks jollof, swallow, pepper soup, suya and small chops to order, then gets them to your door across Abuja in under 45 minutes.">
 <meta name="theme-color" content="#2E0D0D">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://everything-food-eta.vercel.app/">
@@ -31,7 +31,7 @@
   "servesCuisine": "Nigerian",
   "priceRange": "₦₦",
   "telephone": "+234 801 234 5678",
-  "address": { "@type": "PostalAddress", "streetAddress": "14 Adeola Odeku Street", "addressLocality": "Victoria Island, Lagos", "addressCountry": "NG" },
+  "address": { "@type": "PostalAddress", "streetAddress": "12 Aminu Kano Crescent", "addressLocality": "Wuse 2, Abuja", "addressCountry": "NG" },
   "openingHours": "Mo-Su 08:00-23:00"
 }
 </script>
@@ -70,7 +70,7 @@
     <nav class="nav" aria-label="Primary">
       <ul class="nav__list">
         <li><a class="nav__link" href="#top" data-nav aria-current="true">Home</a></li>
-        <li><a class="nav__link" href="#menu" data-nav>Menu</a></li>
+        <li><a class="nav__link" href="/menu" data-nav>Menu</a></li>
         <li><a class="nav__link" href="#services" data-nav>Services</a></li>
         <li><a class="nav__link" href="#contact" data-nav>Contact</a></li>
       </ul>
@@ -103,12 +103,12 @@
   </a>
   <nav class="drawer__list" aria-label="Mobile">
     <a href="#top">Home</a>
-    <a href="#menu">Menu</a>
+    <a href="/menu">Menu</a>
     <a href="#popular">Popular</a>
     <a href="#services">Services</a>
     <a href="#contact">Contact</a>
   </nav>
-  <a class="btn btn--primary" href="#menu" style="margin-top:1.75rem">
+  <a class="btn btn--primary" href="/menu" style="margin-top:1.75rem">
     Order now
     <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
   </a>
@@ -122,6 +122,7 @@
     <video id="hero-video" poster="/assets/video/kitchen-poster.webp" muted loop playsinline preload="none" hidden></video>
   </div>
   <div class="hero__scrim" aria-hidden="true"></div>
+  <canvas class="embers embers--hero" id="embers" aria-hidden="true"></canvas>
 
   <div class="shell hero__inner">
     <div class="hero__copy">
@@ -133,7 +134,7 @@
       </p>
 
       <div class="hero__actions reveal" style="--reveal-delay:180ms">
-        <a class="btn btn--primary" href="#menu">
+        <a class="btn btn--primary" href="/menu">
           Order now
           <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
         </a>
@@ -164,11 +165,11 @@
     <ul class="services">
       <li class="service reveal" style="--reveal-delay:120ms">
         <span class="service__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h11v10H1zM12 9h4.5l3.5 3.5V16h-8z"/><circle cx="6" cy="18.5" r="1.7"/><circle cx="17" cy="18.5" r="1.7"/></svg></span>
-        <span><b>Fast delivery</b><p>Riders across Lagos Island in 45 minutes or it's on us.</p></span>
+        <span><b>Fast delivery</b><p>Riders across Wuse, Maitama and Garki in 45 minutes or it's on us.</p></span>
       </li>
       <li class="service reveal" style="--reveal-delay:180ms">
         <span class="service__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16l-1.3 12H5.3z"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2"/></svg></span>
-        <span><b>Pickup</b><p>Order ahead, skip the queue, grab it at Adeola Odeku.</p></span>
+        <span><b>Pickup</b><p>Order ahead, skip the queue, grab it at Aminu Kano Crescent.</p></span>
       </li>
       <li class="service reveal" style="--reveal-delay:240ms">
         <span class="service__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 3v7a2.5 2.5 0 0 0 5 0V3M7.5 10v11"/><path d="M17.5 3c-1.4 2-2 4-2 6.5 0 1.4.9 2.5 2 2.5h1V3z"/><path d="M17.5 12v9"/></svg></span>
@@ -199,7 +200,7 @@
         <span class="tile__tag">Weekend deal</span>
         <h3>Buy 2 Whole Chickens,<br>Get 1 Free</h3>
         <p>Friday to Sunday only. Roasted over charcoal, rubbed in our own suya spice.</p>
-        <a class="tile__link" href="#menu">Claim the deal <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        <a class="tile__link" href="/menu#protein">Claim the deal <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
       </div>
     </article>
 
@@ -218,7 +219,7 @@
         <div class="tile__body">
           <span class="tile__tag">Under ₦4,000</span>
           <h3>Lunch, Sorted</h3>
-          <a class="tile__link" href="#menu">Browse lunch <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          <a class="tile__link" href="/menu#pasta">Browse lunch <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
     </div>
@@ -232,7 +233,7 @@
       <div>
         <p class="eyebrow">Services</p>
         <h2 class="section-title">Three Steps, <em>One Hot Plate</em></h2>
-        <p class="section-sub">Delivery across Lagos Island and the mainland, pickup at the counter, or a table with the grill in view.</p>
+        <p class="section-sub">Delivery across Wuse, Maitama, Garki, Asokoro and Gwarinpa, pickup at the counter, or a table with the grill in view.</p>
       </div>
     </div>
 
@@ -257,7 +258,7 @@
 </section>
 
 <!-- ============================ Menu grid ============================ -->
-<section class="menu" id="menu">
+<section class="menu" id="bestsellers">
   <div class="shell">
     <div class="section-head reveal">
       <div>
@@ -423,6 +424,11 @@
 
     </div>
     <p class="section-sub" id="filter-status" role="status" aria-live="polite" style="margin-top:1.25rem"></p>
+
+    <a class="btn btn--outline reveal" href="/menu" style="margin-top:1.5rem">
+      See the full menu
+      <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    </a>
   </div>
 </section>
 
@@ -440,11 +446,11 @@
       <h2 class="section-title reveal" style="--reveal-delay:60ms">Our <em>Stories</em> Have Adventures.</h2>
       <p class="section-sub reveal" style="--reveal-delay:120ms">
         Everything Food started in 2014 as one pot of jollof sold from a folding table on
-        Adeola Odeku. The table is gone. The pot is bigger. The recipe never changed, and
+        Aminu Kano Crescent. The table is gone. The pot is bigger. The recipe never changed, and
         neither did the rule that nothing leaves the kitchen we would not serve our own mother.
       </p>
       <p class="section-sub reveal" style="--reveal-delay:160ms">
-        Three cooks became fourteen. We still buy pepper at Mile 12 on Tuesday mornings, and
+        Three cooks became fourteen. We still buy pepper at Wuse Market on Tuesday mornings, and
         we still pound yam by hand because the machine gets it wrong.
       </p>
 
@@ -512,17 +518,17 @@
       <blockquote class="quote reveal">
         <span class="stars" aria-label="5 out of 5">★★★★★</span>
         <p>I ordered the party jollof for eleven people on a Sunday and it arrived still steaming. My aunt asked which caterer we used. That is the review.</p>
-        <footer><span class="avatar" aria-hidden="true">AO</span><span><b>Adaeze Okonkwo</b><span>Lekki Phase 1</span></span></footer>
+        <footer><span class="avatar" aria-hidden="true">AO</span><span><b>Adaeze Okonkwo</b><span>Maitama</span></span></footer>
       </blockquote>
       <blockquote class="quote reveal" style="--reveal-delay:80ms">
         <span class="stars" aria-label="5 out of 5">★★★★★</span>
         <p>The pepper soup is the real thing, not the watered-down version. I have been ordering it every Thursday since March and they have never once got it wrong.</p>
-        <footer><span class="avatar" aria-hidden="true">TB</span><span><b>Tunde Bakare</b><span>Victoria Island</span></span></footer>
+        <footer><span class="avatar" aria-hidden="true">TB</span><span><b>Tunde Bakare</b><span>Garki</span></span></footer>
       </blockquote>
       <blockquote class="quote reveal" style="--reveal-delay:160ms">
         <span class="stars" aria-label="4 out of 5">★★★★☆</span>
-        <p>Rider got to Yaba in 38 minutes during traffic, which I still do not understand. Food was hot. Only complaint is the puff-puff portion disappears too fast.</p>
-        <footer><span class="avatar" aria-hidden="true">NE</span><span><b>Ngozi Eze</b><span>Yaba</span></span></footer>
+        <p>Rider got to Gwarinpa in 38 minutes during traffic, which I still do not understand. Food was hot. Only complaint is the puff-puff portion disappears too fast.</p>
+        <footer><span class="avatar" aria-hidden="true">NE</span><span><b>Ngozi Eze</b><span>Gwarinpa</span></span></footer>
       </blockquote>
     </div>
   </div>
@@ -563,7 +569,7 @@
           </span>
           <span class="brand__text"><b>Everything Food</b><span>Naija Kitchen</span></span>
         </a>
-        <p class="footer__about">Nigerian cooking without shortcuts, from a kitchen on Adeola Odeku Street. Open every day, 8am to 11pm.</p>
+        <p class="footer__about">Nigerian cooking without shortcuts, from a kitchen on Aminu Kano Crescent, Wuse 2. Open every day, 8am to 11pm.</p>
         <div class="socials">
           <a href="#" aria-label="Everything Food on Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
           <a href="#" aria-label="Everything Food on X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.2 22H1.9l7.7-8.8L1 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg></a>
@@ -574,11 +580,11 @@
       <div class="footer">
         <h4>Menu</h4>
         <nav class="footer__links" aria-label="Menu categories">
-          <a href="#menu">Rice &amp; Pasta</a>
-          <a href="#menu">Swallow &amp; Soups</a>
-          <a href="#menu">Grills &amp; Suya</a>
-          <a href="#menu">Small Chops</a>
-          <a href="#popular">Drinks</a>
+          <a href="/menu#rice">Rice &amp; Pasta</a>
+          <a href="/menu#soups">Swallow &amp; Soups</a>
+          <a href="/menu#protein">Grills &amp; Suya</a>
+          <a href="/menu#pastries">Small Chops</a>
+          <a href="/menu#drinks">Drinks</a>
         </nav>
       </div>
 
@@ -595,7 +601,7 @@
       <div class="footer">
         <h4>Visit</h4>
         <div class="footer__links">
-          <span>14 Adeola Odeku Street<br>Victoria Island, Lagos</span>
+          <span>12 Aminu Kano Crescent<br>Wuse 2, Abuja</span>
           <a href="tel:+2348012345678">+234 801 234 5678</a>
           <a href="mailto:hello@everythingfood.ng">hello@everythingfood.ng</a>
         </div>
@@ -604,7 +610,7 @@
 
     <div class="footer__base">
       <span>© <span id="year">2026</span> Everything Food. All rights reserved.</span>
-      <span>Built in Lagos.</span>
+      <span>Built in Abuja.</span>
     </div>
   </div>
 </footer>
