@@ -33,7 +33,9 @@ vercel.json             Cache headers and security headers
 The four pages share their header, drawer and footer markup. There is no build
 step, so that markup is duplicated rather than templated; `menu.html` was
 generated from `index.html`'s chrome, and a change to one needs the same change
-in all of them.
+in all of them. When copying that chrome, note that it ends with the toast and
+the back-to-top button — do not add a second copy, or every page gains duplicate
+element ids and `getElementById` starts resolving to the wrong one.
 
 The contact form has no backend. Rather than pretend to submit, it validates and
 hands the message to the visitor's mail app with every field filled in, so they
