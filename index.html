@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Everything Food — Nigerian Kitchen, Delivered Hot</title>
+<meta name="description" content="Everything Food cooks jollof, swallow, pepper soup, suya and small chops to order, then gets them to your door across Lagos in under 45 minutes.">
+<meta name="theme-color" content="#2E0D0D">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://everything-food.vercel.app/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Everything Food — Nigerian Kitchen, Delivered Hot">
+<meta property="og:description" content="Jollof, swallow, pepper soup, suya and small chops. Cooked to order, at your door in under 45 minutes.">
+<meta property="og:image" content="/assets/img/jollof-grilled-chicken.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="/assets/video/kitchen-poster.webp" fetchpriority="high">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"></noscript>
+<script>document.documentElement.classList.remove('no-js');</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Everything Food",
+  "servesCuisine": "Nigerian",
+  "priceRange": "₦₦",
+  "telephone": "+234 801 234 5678",
+  "address": { "@type": "PostalAddress", "streetAddress": "14 Adeola Odeku Street", "addressLocality": "Victoria Island, Lagos", "addressCountry": "NG" },
+  "openingHours": "Mo-Su 08:00-23:00"
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ============================ Top strip ============================ -->
+<div class="topbar">
+  <div class="shell topbar__inner">
+    <p class="topbar__note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      Kitchen open daily, 8am – 11pm · Free delivery over ₦15,000
+    </p>
+    <ul class="topbar__links">
+      <li><a href="tel:+2348012345678">+234 801 234 5678</a></li>
+      <li><a href="#contact">Track order</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================ Header ============================ -->
+<header class="site-header" id="header">
+  <div class="shell site-header__inner">
+    <a class="brand" href="#top" aria-label="Everything Food, home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 10v11"/><path d="M17.5 3C16 5 15.5 7 15.5 9.5c0 1.4.9 2.5 2 2.5h1V3z"/><path d="M17.5 12v9"/></svg>
+      </span>
+      <span class="brand__text">
+        <b>Everything Food</b>
+        <span>Naija Kitchen</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#top" data-nav aria-current="true">Home</a></li>
+        <li><a class="nav__link" href="#menu" data-nav>Menu</a></li>
+        <li><a class="nav__link" href="#services" data-nav>Services</a></li>
+        <li><a class="nav__link" href="#contact" data-nav>Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__tools">
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label class="sr-only" for="q">Search the menu</label>
+        <input id="q" type="search" placeholder="Search jollof, suya…" autocomplete="off">
+      </div>
+
+      <button class="icon-btn" id="cart" type="button" aria-label="Cart, 0 items">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+        <span class="cart-count" id="cart-count" aria-hidden="true">0</span>
+      </button>
+
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" aria-label="Mobile navigation" aria-hidden="true">
+  <a class="brand" href="#top">
+    <span class="brand__mark" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 10v11"/><path d="M17.5 3C16 5 15.5 7 15.5 9.5c0 1.4.9 2.5 2 2.5h1V3z"/><path d="M17.5 12v9"/></svg>
+    </span>
+    <span class="brand__text"><b>Everything Food</b><span>Naija Kitchen</span></span>
+  </a>
+  <nav class="drawer__list" aria-label="Mobile">
+    <a href="#top">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#popular">Popular</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn--primary" href="#menu" style="margin-top:1.75rem">
+    Order now
+    <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+  </a>
+</aside>
+
+<main id="main">
+<!-- ============================ Hero ============================ -->
+<section class="hero" id="top">
+  <div class="hero__media" aria-hidden="true">
+    <img id="hero-poster" src="/assets/video/kitchen-poster.webp" alt="" width="1280" height="720" fetchpriority="high">
+    <video id="hero-video" poster="/assets/video/kitchen-poster.webp" muted loop playsinline preload="none" hidden></video>
+  </div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <div class="shell hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow reveal">Welcome to Everything Food</p>
+      <h1 class="hero__title reveal" style="--reveal-delay:60ms">Enjoy Your <em>Delicious</em> Food</h1>
+      <p class="hero__text reveal" style="--reveal-delay:120ms">
+        Jollof from an open flame, swallow pounded the same morning, pepper soup that actually
+        bites back. We cook it when you order it and ride it to your door hot.
+      </p>
+
+      <div class="hero__actions reveal" style="--reveal-delay:180ms">
+        <a class="btn btn--primary" href="#menu">
+          Order now
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+        <button class="play" id="play-toggle" type="button" aria-pressed="false">
+          <span class="play__disc" aria-hidden="true">
+            <svg class="play__icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+          <span id="play-label">Watch the kitchen</span>
+        </button>
+      </div>
+
+      <ul class="hero__chips reveal" style="--reveal-delay:240ms">
+        <li class="chip">
+          <img src="/assets/img/suya-skewers-sm.webp" alt="" width="42" height="42" loading="lazy" decoding="async">
+          <span><b>Beef Suya</b><span>₦4,200</span></span>
+        </li>
+        <li class="chip">
+          <img src="/assets/img/puff-puff-sm.webp" alt="" width="42" height="42" loading="lazy" decoding="async">
+          <span><b>Puff-Puff</b><span>₦2,500</span></span>
+        </li>
+        <li class="chip">
+          <img src="/assets/img/chicken-and-chips-sm.webp" alt="" width="42" height="42" loading="lazy" decoding="async">
+          <span><b>Chicken &amp; Chips</b><span>₦5,200</span></span>
+        </li>
+      </ul>
+    </div>
+
+    <ul class="services">
+      <li class="service reveal" style="--reveal-delay:120ms">
+        <span class="service__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h11v10H1zM12 9h4.5l3.5 3.5V16h-8z"/><circle cx="6" cy="18.5" r="1.7"/><circle cx="17" cy="18.5" r="1.7"/></svg></span>
+        <span><b>Fast delivery</b><p>Riders across Lagos Island in 45 minutes or it's on us.</p></span>
+      </li>
+      <li class="service reveal" style="--reveal-delay:180ms">
+        <span class="service__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16l-1.3 12H5.3z"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2"/></svg></span>
+        <span><b>Pickup</b><p>Order ahead, skip the queue, grab it at Adeola Odeku.</p></span>
+      </li>
+      <li class="service reveal" style="--reveal-delay:240ms">
+        <span class="service__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 3v7a2.5 2.5 0 0 0 5 0V3M7.5 10v11"/><path d="M17.5 3c-1.4 2-2 4-2 6.5 0 1.4.9 2.5 2 2.5h1V3z"/><path d="M17.5 12v9"/></svg></span>
+        <span><b>Dine in</b><p>28 covers, cold Chapman, and the grill in plain sight.</p></span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ Ticker ============================ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <div class="ticker__group">
+      <span>Party Jollof</span><span>Egusi &amp; Pounded Yam</span><span>Beef Suya</span><span>Pepper Soup</span><span>Small Chops</span><span>Grilled Tilapia</span><span>Chapman</span>
+    </div>
+    <div class="ticker__group">
+      <span>Party Jollof</span><span>Egusi &amp; Pounded Yam</span><span>Beef Suya</span><span>Pepper Soup</span><span>Small Chops</span><span>Grilled Tilapia</span><span>Chapman</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ Promo tiles ============================ -->
+<section class="promo">
+  <div class="shell promo__grid">
+    <article class="tile tile--tall reveal">
+      <img src="/assets/img/roast-chicken.webp" alt="Whole roast chicken resting on a platter with herbs and citrus" width="800" height="992" loading="lazy" decoding="async">
+      <div class="tile__body">
+        <span class="tile__tag">Weekend deal</span>
+        <h3>Buy 2 Whole Chickens,<br>Get 1 Free</h3>
+        <p>Friday to Sunday only. Roasted over charcoal, rubbed in our own suya spice.</p>
+        <a class="tile__link" href="#menu">Claim the deal <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </article>
+
+    <div class="promo__col">
+      <article class="tile reveal" style="--reveal-delay:80ms">
+        <img src="/assets/img/catfish-stew.webp" alt="Catfish simmered in a red pepper stew with garden egg and greens" width="800" height="780" loading="lazy" decoding="async">
+        <div class="tile__body">
+          <span class="tile__tag">Chef's pick</span>
+          <h3>Catfish Pepper Stew</h3>
+          <a class="tile__link" href="#popular">See the dish <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="tile reveal" style="--reveal-delay:160ms">
+        <img src="/assets/img/stir-fry-noodles.webp" alt="Stir-fried noodles tossed with peppers and spring onion" width="800" height="800" loading="lazy" decoding="async">
+        <div class="tile__body">
+          <span class="tile__tag">Under ₦4,000</span>
+          <h3>Lunch, Sorted</h3>
+          <a class="tile__link" href="#menu">Browse lunch <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ How it works ============================ -->
+<section class="how" id="services">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Services</p>
+        <h2 class="section-title">Three Steps, <em>One Hot Plate</em></h2>
+        <p class="section-sub">Delivery across Lagos Island and the mainland, pickup at the counter, or a table with the grill in view.</p>
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step__num" aria-hidden="true">01</span>
+        <h3>Pick your plate</h3>
+        <p>Browse the menu, build the order, tell us how much pepper you can actually handle.</p>
+      </li>
+      <li class="step reveal" style="--reveal-delay:80ms">
+        <span class="step__num" aria-hidden="true">02</span>
+        <h3>We cook it fresh</h3>
+        <p>Nothing sits under a heat lamp. The pot goes on when the order lands, which is why it takes the time it takes.</p>
+      </li>
+      <li class="step reveal" style="--reveal-delay:160ms">
+        <span class="step__num" aria-hidden="true">03</span>
+        <h3>It gets to you hot</h3>
+        <p>Insulated bags, tracked riders, and a refund if it arrives cold. Pickup and dine-in skip this step entirely.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ Menu grid ============================ -->
+<section class="menu" id="menu">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">The kitchen</p>
+        <h2 class="section-title">Best <em>Products</em></h2>
+        <p class="section-sub">Eight plates that leave the pass more than any others. Prices are per portion, packaged for travel.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter the menu by category">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter" type="button" data-filter="rice" aria-pressed="false">Rice &amp; Pasta</button>
+        <button class="filter" type="button" data-filter="swallow" aria-pressed="false">Swallow</button>
+        <button class="filter" type="button" data-filter="grills" aria-pressed="false">Grills</button>
+        <button class="filter" type="button" data-filter="soups" aria-pressed="false">Soups</button>
+        <button class="filter" type="button" data-filter="chops" aria-pressed="false">Small Chops</button>
+      </div>
+    </div>
+
+    <div class="grid" id="product-grid">
+
+      <article class="card card--featured reveal" data-cat="rice" data-name="Party Jollof &amp; Grilled Chicken">
+        <div class="card__media">
+          <img src="/assets/img/jollof-grilled-chicken.webp" alt="Party jollof rice with grilled chicken, fried plantain and a side salad" width="800" height="800" loading="lazy" decoding="async">
+          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Party Jollof and Grilled Chicken">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
+          </button>
+        </div>
+        <h3 class="card__title">Party Jollof &amp; Chicken</h3>
+        <p class="card__rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.9 <span>(412)</span></p>
+        <p class="card__desc">Smoky party-style jollof, charcoal-grilled chicken quarter, dodo and coleslaw.</p>
+        <div class="card__foot">
+          <span class="card__price">₦6,500</span>
+          <button class="card__add" type="button" aria-label="Add Party Jollof and Chicken to cart">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--reveal-delay:60ms" data-cat="swallow" data-name="Egusi Soup &amp; Pounded Yam">
+        <div class="card__media">
+          <img src="/assets/img/egusi-soup-fufu.webp" alt="Egusi soup in a clay bowl beside two moulds of pounded yam" width="800" height="800" loading="lazy" decoding="async">
+          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Egusi Soup and Pounded Yam">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
+          </button>
+        </div>
+        <h3 class="card__title">Egusi &amp; Pounded Yam</h3>
+        <p class="card__rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.8 <span>(286)</span></p>
+        <p class="card__desc">Melon-seed soup with goat meat and stockfish, two wraps of pounded yam.</p>
+        <div class="card__foot">
+          <span class="card__price">₦5,800</span>
+          <button class="card__add" type="button" aria-label="Add Egusi and Pounded Yam to cart">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--reveal-delay:120ms" data-cat="grills" data-name="Beef Suya Skewers">
+        <div class="card__media">
+          <img src="/assets/img/suya-skewers.webp" alt="Beef suya skewers plated with chips, onion and fresh salad" width="800" height="985" loading="lazy" decoding="async">
+          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Beef Suya Skewers">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
+          </button>
+        </div>
+        <h3 class="card__title">Beef Suya Skewers</h3>
+        <p class="card__rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.9 <span>(504)</span></p>
+        <p class="card__desc">Four skewers rolled in yaji, chips, raw onion and a wedge of lime.</p>
+        <div class="card__foot">
+          <span class="card__price">₦4,200</span>
+          <button class="card__add" type="button" aria-label="Add Beef Suya Skewers to cart">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--reveal-delay:180ms" data-cat="rice" data-name="Jollof Spaghetti">
+        <div class="card__media">
+          <img src="/assets/img/jollof-spaghetti.webp" alt="Jollof spaghetti tossed with peppers and spring onion" width="800" height="993" loading="lazy" decoding="async">
+          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Jollof Spaghetti">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
+          </button>
+        </div>
+        <h3 class="card__title">Jollof Spaghetti</h3>
+        <p class="card__rating"><span class="stars" aria-hidden="true">★★★★☆</span> 4.6 <span>(198)</span></p>
+        <p class="card__desc">Spaghetti cooked down in pepper base with bell peppers and beef strips.</p>
+        <div class="card__foot">
+          <span class="card__price">₦3,900</span>
+          <button class="card__add" type="button" aria-label="Add Jollof Spaghetti to cart">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="soups" data-name="Assorted Pepper Soup">
+        <div class="card__media">
+          <img src="/assets/img/assorted-pepper-soup.webp" alt="Assorted meat pepper soup in a wide white bowl" width="800" height="800" loading="lazy" decoding="async">
+          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Assorted Pepper Soup">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
+          </button>
+        </div>
+        <h3 class="card__title">Assorted Pepper Soup</h3>
+        <p class="card__rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.7 <span>(233)</span></p>
+        <p class="card__desc">Shaki, towel and kpomo in a clear peppery broth. Comes with agidi.</p>
+        <div class="card__foot">
+          <span class="card__price">₦7,000</span>
+          <button class="card__add" type="button" aria-label="Add Assorted Pepper Soup to cart">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--reveal-delay:60ms" data-cat="grills" data-name="Chicken &amp; Chips">
+        <div class="card__media">
+          <img src="/assets/img/chicken-and-chips.webp" alt="Fried chicken and chips with dipping sauces" width="800" height="782" loading="lazy" decoding="async">
+          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Chicken and Chips">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
+          </button>
+        </div>
+        <h3 class="card__title">Chicken &amp; Chips</h3>
+        <p class="card__rating"><span class="stars" aria-hidden="true">★★★★☆</span> 4.5 <span>(361)</span></p>
+        <p class="card__desc">Half chicken, hand-cut chips, and both sauces because choosing is hard.</p>
+        <div class="card__foot">
+          <span class="card__price">₦5,200</span>
+          <button class="card__add" type="button" aria-label="Add Chicken and Chips to cart">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--reveal-delay:120ms" data-cat="chops" data-name="Meat Pie, Box of 6">
+        <div class="card__media">
+          <img src="/assets/img/meat-pie.webp" alt="A bowl of golden Nigerian meat pies" width="473" height="471" loading="lazy" decoding="async">
+          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Meat Pie box of six">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
+          </button>
+        </div>
+        <h3 class="card__title">Meat Pie · Box of 6</h3>
+        <p class="card__rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.8 <span>(147)</span></p>
+        <p class="card__desc">Flaky shortcrust, minced beef, potato and carrot. Baked every morning.</p>
+        <div class="card__foot">
+          <span class="card__price">₦3,000</span>
+          <button class="card__add" type="button" aria-label="Add Meat Pie box of six to cart">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--reveal-delay:180ms" data-cat="chops" data-name="Puff-Puff &amp; Suya Dip">
+        <div class="card__media">
+          <img src="/assets/img/puff-puff.webp" alt="A platter of puff-puff arranged around a bowl of suya spice" width="800" height="803" loading="lazy" decoding="async">
+          <button class="card__fav" type="button" aria-pressed="false" aria-label="Save Puff-Puff and Suya Dip">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6C19 15.4 12 20 12 20z"/></svg>
+          </button>
+        </div>
+        <h3 class="card__title">Puff-Puff &amp; Suya Dip</h3>
+        <p class="card__rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.9 <span>(322)</span></p>
+        <p class="card__desc">A dozen, still warm, with a bowl of yaji for dipping. Shareable, in theory.</p>
+        <div class="card__foot">
+          <span class="card__price">₦2,500</span>
+          <button class="card__add" type="button" aria-label="Add Puff-Puff and Suya Dip to cart">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </article>
+
+    </div>
+    <p class="section-sub" id="filter-status" role="status" aria-live="polite" style="margin-top:1.25rem"></p>
+  </div>
+</section>
+
+<!-- ============================ Story ============================ -->
+<section class="story">
+  <div class="shell story__grid">
+    <div class="story__media reveal">
+      <img src="/assets/img/jollof-bowl-hands.webp" alt="Two hands presenting a bowl of jollof rice topped with chicken" width="800" height="1000" loading="lazy" decoding="async">
+      <span class="badge badge--spin" aria-hidden="true"><b>12</b><span>Years</span></span>
+      <span class="badge badge--float" aria-hidden="true"><b>₦0</b><span>Delivery</span></span>
+    </div>
+
+    <div>
+      <p class="eyebrow reveal">Our experience</p>
+      <h2 class="section-title reveal" style="--reveal-delay:60ms">Our <em>Stories</em> Have Adventures.</h2>
+      <p class="section-sub reveal" style="--reveal-delay:120ms">
+        Everything Food started in 2014 as one pot of jollof sold from a folding table on
+        Adeola Odeku. The table is gone. The pot is bigger. The recipe never changed, and
+        neither did the rule that nothing leaves the kitchen we would not serve our own mother.
+      </p>
+      <p class="section-sub reveal" style="--reveal-delay:160ms">
+        Three cooks became fourteen. We still buy pepper at Mile 12 on Tuesday mornings, and
+        we still pound yam by hand because the machine gets it wrong.
+      </p>
+
+      <div class="stats">
+        <div class="stat reveal" style="--reveal-delay:200ms"><b data-count="128" data-suffix="k+">0</b><span>Plates served</span></div>
+        <div class="stat reveal" style="--reveal-delay:260ms"><b data-count="46" data-suffix="+">0</b><span>Dishes on rotation</span></div>
+        <div class="stat reveal" style="--reveal-delay:320ms"><b data-count="12" data-suffix=" yrs">0</b><span>In the kitchen</span></div>
+      </div>
+
+      <a class="btn btn--outline reveal" href="#contact" style="--reveal-delay:360ms;margin-top:2rem">
+        Book a table
+        <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ Popular rail ============================ -->
+<section class="popular" id="popular">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Ordered again and again</p>
+        <h2 class="section-title">Most <em>Popular</em> Items</h2>
+      </div>
+      <div class="rail-nav">
+        <button type="button" id="rail-prev" aria-label="Scroll popular items left" aria-controls="rail">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button type="button" id="rail-next" aria-label="Scroll popular items right" aria-controls="rail">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell rail-wrap">
+    <ul class="rail" id="rail" tabindex="0" aria-label="Most popular items, scrollable">
+      <li class="dish reveal"><img src="/assets/img/grilled-tilapia.webp" alt="Whole grilled tilapia with pepper sauce and fried plantain" width="800" height="1174" loading="lazy" decoding="async"><div class="dish__body"><b>Grilled Tilapia &amp; Dodo</b><div class="dish__meta"><span class="dish__price">₦8,900</span><span class="dish__cat">Seafood</span></div></div></li>
+      <li class="dish reveal" style="--reveal-delay:60ms"><img src="/assets/img/jollof-plantain-turkey.webp" alt="Jollof rice with fried plantain and turkey" width="800" height="782" loading="lazy" decoding="async"><div class="dish__body"><b>Jollof, Dodo &amp; Turkey</b><div class="dish__meta"><span class="dish__price">₦7,400</span><span class="dish__cat">Rice</span></div></div></li>
+      <li class="dish reveal" style="--reveal-delay:120ms"><img src="/assets/img/efo-riro-yam.webp" alt="Efo riro vegetable soup served with sliced boiled yam" width="800" height="1064" loading="lazy" decoding="async"><div class="dish__body"><b>Efo Riro &amp; Boiled Yam</b><div class="dish__meta"><span class="dish__price">₦5,600</span><span class="dish__cat">Soups</span></div></div></li>
+      <li class="dish reveal" style="--reveal-delay:180ms"><img src="/assets/img/banga-soup-fufu.webp" alt="Banga soup with fish served alongside two wraps of fufu" width="800" height="800" loading="lazy" decoding="async"><div class="dish__body"><b>Banga Soup &amp; Fufu</b><div class="dish__meta"><span class="dish__price">₦6,800</span><span class="dish__cat">Swallow</span></div></div></li>
+      <li class="dish reveal"><img src="/assets/img/amala-ewedu.webp" alt="Amala with ewedu, gbegiri and stewed chicken" width="800" height="800" loading="lazy" decoding="async"><div class="dish__body"><b>Amala &amp; Abula</b><div class="dish__meta"><span class="dish__price">₦4,800</span><span class="dish__cat">Swallow</span></div></div></li>
+      <li class="dish reveal"><img src="/assets/img/rice-beans-plantain.webp" alt="Rice and beans with plantain and stewed chicken on a sizzling platter" width="800" height="982" loading="lazy" decoding="async"><div class="dish__body"><b>Rice, Beans &amp; Dodo</b><div class="dish__meta"><span class="dish__price">₦4,500</span><span class="dish__cat">Combo</span></div></div></li>
+      <li class="dish reveal"><img src="/assets/img/asaro-yam-porridge.webp" alt="Asaro yam porridge topped with peppered sauce" width="800" height="927" loading="lazy" decoding="async"><div class="dish__body"><b>Asaro (Yam Porridge)</b><div class="dish__meta"><span class="dish__price">₦3,800</span><span class="dish__cat">Native</span></div></div></li>
+      <li class="dish reveal"><img src="/assets/img/goat-meat-stew.webp" alt="Goat meat stewed with garden egg and greens" width="800" height="909" loading="lazy" decoding="async"><div class="dish__body"><b>Goat Meat Stew</b><div class="dish__meta"><span class="dish__price">₦7,600</span><span class="dish__cat">Native</span></div></div></li>
+      <li class="dish reveal"><img src="/assets/img/afang-pounded-yam.webp" alt="Afang soup with a mould of pounded yam" width="800" height="992" loading="lazy" decoding="async"><div class="dish__body"><b>Afang &amp; Pounded Yam</b><div class="dish__meta"><span class="dish__price">₦6,200</span><span class="dish__cat">Swallow</span></div></div></li>
+      <li class="dish reveal"><img src="/assets/img/yam-and-egg.webp" alt="Boiled yam served with egg sauce" width="800" height="800" loading="lazy" decoding="async"><div class="dish__body"><b>Yam &amp; Egg Sauce</b><div class="dish__meta"><span class="dish__price">₦3,400</span><span class="dish__cat">Breakfast</span></div></div></li>
+      <li class="dish reveal"><img src="/assets/img/chapman-drinks.webp" alt="Cups of chilled Chapman with fruit" width="450" height="800" loading="lazy" decoding="async"><div class="dish__body"><b>Chapman &amp; Zobo</b><div class="dish__meta"><span class="dish__price">₦1,500</span><span class="dish__cat">Drinks</span></div></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ Testimonials ============================ -->
+<section class="voices">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">What people say</p>
+        <h2 class="section-title">Reviews From <em>Real Plates</em></h2>
+      </div>
+    </div>
+
+    <div class="voices__grid">
+      <blockquote class="quote reveal">
+        <span class="stars" aria-label="5 out of 5">★★★★★</span>
+        <p>I ordered the party jollof for eleven people on a Sunday and it arrived still steaming. My aunt asked which caterer we used. That is the review.</p>
+        <footer><span class="avatar" aria-hidden="true">AO</span><span><b>Adaeze Okonkwo</b><span>Lekki Phase 1</span></span></footer>
+      </blockquote>
+      <blockquote class="quote reveal" style="--reveal-delay:80ms">
+        <span class="stars" aria-label="5 out of 5">★★★★★</span>
+        <p>The pepper soup is the real thing, not the watered-down version. I have been ordering it every Thursday since March and they have never once got it wrong.</p>
+        <footer><span class="avatar" aria-hidden="true">TB</span><span><b>Tunde Bakare</b><span>Victoria Island</span></span></footer>
+      </blockquote>
+      <blockquote class="quote reveal" style="--reveal-delay:160ms">
+        <span class="stars" aria-label="4 out of 5">★★★★☆</span>
+        <p>Rider got to Yaba in 38 minutes during traffic, which I still do not understand. Food was hot. Only complaint is the puff-puff portion disappears too fast.</p>
+        <footer><span class="avatar" aria-hidden="true">NE</span><span><b>Ngozi Eze</b><span>Yaba</span></span></footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ Signup ============================ -->
+<section class="signup" id="contact">
+  <div class="shell">
+    <div class="signup__panel reveal">
+      <div>
+        <h2>Get the Friday menu before everyone else.</h2>
+        <p>One email a week: what's on the grill, what sold out last weekend, and a code for free delivery on your next order.</p>
+      </div>
+      <div>
+        <form id="signup-form" novalidate>
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <button class="btn btn--primary" type="submit">
+            Subscribe
+            <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </button>
+        </form>
+        <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================ Footer ============================ -->
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer">
+        <a class="brand" href="#top">
+          <span class="brand__mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 10v11"/><path d="M17.5 3C16 5 15.5 7 15.5 9.5c0 1.4.9 2.5 2 2.5h1V3z"/><path d="M17.5 12v9"/></svg>
+          </span>
+          <span class="brand__text"><b>Everything Food</b><span>Naija Kitchen</span></span>
+        </a>
+        <p class="footer__about">Nigerian cooking without shortcuts, from a kitchen on Adeola Odeku Street. Open every day, 8am to 11pm.</p>
+        <div class="socials">
+          <a href="#" aria-label="Everything Food on Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+          <a href="#" aria-label="Everything Food on X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.2 22H1.9l7.7-8.8L1 2h6.8l4.7 6.2zm-1.2 18h1.8L7.1 3.9H5.2z"/></svg></a>
+          <a href="#" aria-label="Everything Food on WhatsApp"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 20.5l1.6-5.5A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.6 9.2c.3 2.6 2.8 5 5.4 5.4l1-1.4 1.8.9c-.3 1.2-1.6 1.6-2.8 1.3-3-.7-5.5-3.2-6.2-6.2-.3-1.2.1-2.5 1.3-2.8l.9 1.8z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer">
+        <h4>Menu</h4>
+        <nav class="footer__links" aria-label="Menu categories">
+          <a href="#menu">Rice &amp; Pasta</a>
+          <a href="#menu">Swallow &amp; Soups</a>
+          <a href="#menu">Grills &amp; Suya</a>
+          <a href="#menu">Small Chops</a>
+          <a href="#popular">Drinks</a>
+        </nav>
+      </div>
+
+      <div class="footer">
+        <h4>Company</h4>
+        <nav class="footer__links" aria-label="Company">
+          <a href="#">Our story</a>
+          <a href="#">Catering &amp; events</a>
+          <a href="#">Ride with us</a>
+          <a href="#">Careers</a>
+        </nav>
+      </div>
+
+      <div class="footer">
+        <h4>Visit</h4>
+        <div class="footer__links">
+          <span>14 Adeola Odeku Street<br>Victoria Island, Lagos</span>
+          <a href="tel:+2348012345678">+234 801 234 5678</a>
+          <a href="mailto:hello@everythingfood.ng">hello@everythingfood.ng</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__base">
+      <span>© <span id="year">2026</span> Everything Food. All rights reserved.</span>
+      <span>Built in Lagos.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span id="toast-text"></span></div>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
+</button>
+
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>
