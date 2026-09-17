@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Video check — Everything Food</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 1.5rem;
+    background: #2E0D0D; color: #FFF5F2;
+    font: 15px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  h1 { font-size: 1.3rem; margin: 0 0 .25rem; }
+  p.lede { margin: 0 0 1.5rem; color: rgba(255,245,242,.6); font-size: .88rem; }
+  section { margin-bottom: 1.25rem; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; overflow: hidden; }
+  h2 { margin: 0; padding: .7rem 1rem; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+       background: rgba(255,255,255,.07); color: #F7B7AC; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: .5rem 1rem; border-top: 1px solid rgba(255,255,255,.08); vertical-align: top; font-size: .84rem; }
+  td:first-child { color: rgba(255,245,242,.55); width: 42%; }
+  td:last-child { word-break: break-word; }
+  .ok   { color: #8BE6B0; }
+  .bad  { color: #FF8A7A; font-weight: 700; }
+  .warn { color: #F2C14E; }
+  pre { margin: 0; padding: .75rem 1rem; font-size: .78rem; white-space: pre-wrap;
+        color: rgba(255,245,242,.72); max-height: 16rem; overflow: auto; }
+  video { width: 100%; max-width: 420px; display: block; margin: .75rem 1rem 1rem; border-radius: 8px; background: #000; }
+  .verdict { padding: 1rem; font-size: .95rem; }
+  a { color: #F7B7AC; }
+</style>
+</head>
+<body>
+
+<h1>Hero video diagnostic</h1>
+<p class="lede">
+  Open this on the machine where the video does not play, wait about ten seconds,
+  then screenshot the whole page. Nothing here is linked from the site.
+</p>
+
+<section>
+  <h2>This browser</h2>
+  <table id="env"></table>
+</section>
+
+<section>
+  <h2>Codec support</h2>
+  <table id="codecs"></table>
+</section>
+
+<section>
+  <h2>The files, over the network</h2>
+  <table id="files"></table>
+</section>
+
+<section>
+  <h2>MP4 — the file a desktop browser should pick</h2>
+  <div class="verdict" id="mp4-verdict">testing…</div>
+  <video id="mp4" muted loop playsinline preload="auto"></video>
+  <table id="mp4-state"></table>
+  <pre id="mp4-log"></pre>
+</section>
+
+<section>
+  <h2>WebM — the fallback</h2>
+  <div class="verdict" id="webm-verdict">testing…</div>
+  <video id="webm" muted loop playsinline preload="auto"></video>
+  <table id="webm-state"></table>
+  <pre id="webm-log"></pre>
+</section>
+
+<section>
+  <h2>Exactly what the home page does</h2>
+  <div class="verdict" id="hero-verdict">testing…</div>
+  <table id="hero-state"></table>
+  <pre id="hero-log"></pre>
+</section>
+
+<script>
+(function () {
+  'use strict';
+
+  var MEDIA_ERR = {
+    1: 'MEDIA_ERR_ABORTED — the fetch was cancelled',
+    2: 'MEDIA_ERR_NETWORK — the download failed',
+    3: 'MEDIA_ERR_DECODE — downloaded but could not be decoded',
+    4: 'MEDIA_ERR_SRC_NOT_SUPPORTED — no source this browser can play',
+  };
+  var READY = ['0 HAVE_NOTHING', '1 HAVE_METADATA', '2 HAVE_CURRENT_DATA', '3 HAVE_FUTURE_DATA', '4 HAVE_ENOUGH_DATA'];
+  var NET = ['0 NETWORK_EMPTY', '1 NETWORK_IDLE', '2 NETWORK_LOADING', '3 NETWORK_NO_SOURCE'];
+
+  function rows(table, pairs) {
+    document.getElementById(table).innerHTML = pairs.map(function (p) {
+      var cls = p[2] ? ' class="' + p[2] + '"' : '';
+      return '<tr><td>' + p[0] + '</td><td' + cls + '>' + p[1] + '</td></tr>';
+    }).join('');
+  }
+
+  /* ---------------------------------------------------------------- Environment */
+  var c = navigator.connection || {};
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  rows('env', [
+    ['Viewport', innerWidth + ' x ' + innerHeight + ' CSS px'],
+    ['Device pixel ratio', devicePixelRatio],
+    ['Picks which file', matchMedia('(max-width: 780px)').matches ? '720 (narrow)' : '1280 (wide)'],
+    ['prefers-reduced-motion', reduced ? 'REDUCE — the site skips video on purpose' : 'no preference', reduced ? 'bad' : 'ok'],
+    ['navigator.connection', navigator.connection ? 'present' : 'absent (treated as fine)'],
+    ['&nbsp;&nbsp;saveData', c.saveData === undefined ? 'n/a' : String(c.saveData),
+      c.saveData ? 'bad' : 'ok'],
+    ['&nbsp;&nbsp;effectiveType', c.effectiveType || 'n/a',
+      /^(slow-2g|2g)$/.test(c.effectiveType || '') ? 'bad' : 'ok'],
+    ['Site would autoplay?',
+      (!reduced && !c.saveData && !/^(slow-2g|2g)$/.test(c.effectiveType || '')) ? 'yes' : 'NO — gated off',
+      (!reduced && !c.saveData && !/^(slow-2g|2g)$/.test(c.effectiveType || '')) ? 'ok' : 'bad'],
+    ['User agent', navigator.userAgent],
+  ]);
+
+  /* -------------------------------------------------------------------- Codecs */
+  var probe = document.createElement('video');
+  function can(t) { var r = probe.canPlayType(t); return r || 'no'; }
+  var h264 = can('video/mp4; codecs="avc1.4D401F"');
+  rows('codecs', [
+    ['video/mp4 (H.264 Main)', h264, h264 === 'no' ? 'bad' : 'ok'],
+    ['video/mp4 (generic)', can('video/mp4')],
+    ['video/webm; codecs=vp9', can('video/webm; codecs="vp9"')],
+    ['video/webm (generic)', can('video/webm')],
+  ]);
+
+  /* --------------------------------------------------------------------- Files */
+  var FILES = ['/assets/video/kitchen-1280.mp4', '/assets/video/kitchen-720.mp4',
+               '/assets/video/kitchen-1280.webm', '/assets/video/kitchen-720.webm'];
+  var fileRows = [];
+  FILES.forEach(function (url) {
+    fetch(url, { method: 'GET', headers: { Range: 'bytes=0-1023' } })
+      .then(function (r) {
+        var ok = r.status === 200 || r.status === 206;
+        fileRows.push([url.split('/').pop(),
+          r.status + ' · ' + (r.headers.get('content-type') || 'no content-type') +
+          ' · ' + (r.headers.get('content-length') || '?') + ' bytes of range',
+          ok ? 'ok' : 'bad']);
+      })
+      .catch(function (e) { fileRows.push([url.split('/').pop(), 'FETCH FAILED — ' + e.message, 'bad']); })
+      .then(function () { rows('files', fileRows.slice().sort()); });
+  });
+
+  /* ---------------------------------------------------- One element, one source */
+  var EVENTS = ['loadstart', 'loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough',
+                'play', 'playing', 'pause', 'waiting', 'stalled', 'suspend', 'abort', 'error'];
+
+  function watch(id, log) {
+    var v = document.getElementById(id);
+    var lines = [];
+    var t0 = performance.now();
+    EVENTS.forEach(function (name) {
+      v.addEventListener(name, function () {
+        lines.push(Math.round(performance.now() - t0) + 'ms  ' + name);
+        document.getElementById(log).textContent = lines.join('\n');
+      });
+    });
+    return v;
+  }
+
+  function report(v, stateId, verdictId) {
+    var err = v.error;
+    rows(stateId, [
+      ['currentSrc', v.currentSrc ? v.currentSrc.split('/').pop() : '(none chosen)'],
+      ['readyState', READY[v.readyState] || v.readyState],
+      ['networkState', NET[v.networkState] || v.networkState],
+      ['paused', String(v.paused)],
+      ['currentTime', v.currentTime.toFixed(2) + 's'],
+      ['videoWidth x videoHeight', v.videoWidth + ' x ' + v.videoHeight],
+      ['error', err ? (MEDIA_ERR[err.code] || err.code) + (err.message ? ' — ' + err.message : '') : 'none',
+        err ? 'bad' : 'ok'],
+    ]);
+
+    var el = document.getElementById(verdictId);
+    if (err) { el.className = 'verdict bad'; el.textContent = 'FAILED — ' + (MEDIA_ERR[err.code] || err.code); }
+    else if (!v.paused && v.currentTime > 0) { el.className = 'verdict ok'; el.textContent = 'PLAYING'; }
+    else if (v.readyState >= 2) { el.className = 'verdict warn'; el.textContent = 'Loaded but not playing — autoplay was refused'; }
+    else { el.className = 'verdict bad'; el.textContent = 'Never became playable'; }
+  }
+
+  function single(id, url, type, stateId, verdictId, logId) {
+    var v = watch(id, logId);
+    var s = document.createElement('source');
+    s.src = url; s.type = type;
+    v.appendChild(s);
+    v.load();
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+    setTimeout(function () { report(v, stateId, verdictId); }, 6000);
+  }
+
+  single('mp4', '/assets/video/kitchen-1280.mp4', 'video/mp4', 'mp4-state', 'mp4-verdict', 'mp4-log');
+  single('webm', '/assets/video/kitchen-1280.webm', 'video/webm', 'webm-state', 'webm-verdict', 'webm-log');
+
+  /* ------------------------------------------- The home page's exact code path */
+  var hero = document.createElement('video');
+  hero.muted = true; hero.loop = true; hero.playsInline = true; hero.preload = 'none';
+  hero.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none';
+  hero.id = 'hero-probe';
+  document.body.appendChild(hero);
+
+  var heroLines = [];
+  var h0 = performance.now();
+  EVENTS.forEach(function (name) {
+    hero.addEventListener(name, function () {
+      heroLines.push(Math.round(performance.now() - h0) + 'ms  ' + name);
+      document.getElementById('hero-log').textContent = heroLines.join('\n');
+    });
+  });
+
+  var size = matchMedia('(max-width: 780px)').matches ? '720' : '1280';
+  [['/assets/video/kitchen-' + size + '.mp4', 'video/mp4'],
+   ['/assets/video/kitchen-' + size + '.webm', 'video/webm']].forEach(function (pair) {
+    var s = document.createElement('source');
+    s.src = pair[0]; s.type = pair[1];
+    hero.appendChild(s);
+  });
+  hero.preload = 'auto';
+  hero.load();
+  var hp = hero.play();
+  if (hp && hp.catch) hp.catch(function (e) {
+    heroLines.push('play() REJECTED — ' + e.name + ': ' + e.message);
+    document.getElementById('hero-log').textContent = heroLines.join('\n');
+  });
+  setTimeout(function () { report(hero, 'hero-state', 'hero-verdict'); }, 7000);
+})();
+</script>
+</body>
+</html>

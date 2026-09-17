@@ -149,7 +149,7 @@
 
     // Listeners first: a cached file can reach a playable state quickly, and a
     // listener attached after load() would miss the event that sets it going.
-    ['loadeddata', 'canplay', 'playing'].forEach(function (name) {
+    ['loadedmetadata', 'loadeddata', 'canplay', 'playing'].forEach(function (name) {
       video.addEventListener(name, revealVideo);
     });
     video.addEventListener('playing', function () { setPlayState(true); });
@@ -175,16 +175,18 @@
     video.load();
     attemptPlay();
 
-    // If none of the above has produced a frame, decide what actually happened
-    // rather than leaving a transparent video over the poster indefinitely.
+    // Two safety nets. The first shows the element regardless of which event
+    // did or did not arrive: the poster behind it is the same frame, so an
+    // early reveal costs nothing, while staying transparent while playing is
+    // indistinguishable from being broken.
     setTimeout(function () {
-      if (video.classList.contains('is-ready')) return;
-      if (video.error || video.networkState === video.NETWORK_NO_SOURCE) {
-        failVideo();
-      } else if (video.readyState >= 2) {
-        revealVideo();
-      }
-    }, 5000);
+      if (!video.error) revealVideo();
+    }, 2500);
+
+    // The second decides what actually happened once there has been time.
+    setTimeout(function () {
+      if (video.error || video.networkState === video.NETWORK_NO_SOURCE) failVideo();
+    }, 6000);
   }
 
   function failVideo() {
