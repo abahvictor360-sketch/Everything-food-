@@ -1243,3 +1243,90 @@ section { position: relative; }
   .field-row { grid-template-columns: 1fr; }
   .contact__cards { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   Routes — what to do once you have looked round
+   ========================================================================== */
+.next-step { padding-block: clamp(2.5rem, 6vw, 4rem); }
+.routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.1rem; margin-top: 2.25rem; }
+.route {
+  display: flex; flex-direction: column;
+  padding: 1.75rem 1.6rem;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  transition: transform var(--t-hover) var(--ease-out), border-color var(--t-hover) ease, box-shadow var(--t-hover) ease;
+}
+.route__icon {
+  width: 42px; height: 42px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 12px; background: var(--red-50); color: var(--red-600);
+  transition: background-color var(--t-hover) ease, color var(--t-hover) ease;
+}
+.route h3 { margin-top: 1rem; font-size: 1.08rem; font-weight: 800; letter-spacing: -.015em; }
+.route p { margin-top: .5rem; font-size: .9rem; line-height: 1.6; color: var(--ink-soft); }
+.route__go {
+  display: inline-flex; align-items: center; gap: .45rem;
+  margin-top: auto; padding-top: 1.25rem;
+  font-size: .88rem; font-weight: 700; color: var(--red-600);
+}
+.route__go .arrow { transition: transform var(--t-hover) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .route:hover { transform: translateY(-5px); border-color: var(--red-100); box-shadow: var(--shadow-md); }
+  .route:hover .route__icon { background: var(--red-600); color: #fff; }
+  .route:hover .route__go .arrow { transform: translateX(4px); }
+}
+
+/* The landing grid no longer sells, so the card foot is just the price */
+.card__foot { justify-content: flex-start; }
+
+/* ==========================================================================
+   Order stages
+   ========================================================================== */
+.stages-wrap { padding-block: clamp(2rem, 5vw, 3rem) clamp(3rem, 7vw, 5rem); background: var(--red-50); }
+.stages { margin-top: 2.25rem; display: grid; gap: .6rem; }
+.stage {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1.25rem; align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  transition: transform var(--t-hover) var(--ease-out), box-shadow var(--t-hover) ease;
+}
+.stage__num {
+  width: 44px; height: 44px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--maroon-800); color: #fff;
+  font-size: .9rem; font-weight: 800;
+}
+.stage__body h3 { font-size: 1rem; font-weight: 800; letter-spacing: -.015em; }
+.stage__body p { margin-top: .3rem; font-size: .88rem; line-height: 1.6; color: var(--ink-soft); }
+.stage__time {
+  flex: none; padding: .35rem .85rem;
+  border-radius: 999px; background: var(--red-50);
+  font-size: .78rem; font-weight: 800; color: var(--red-600); white-space: nowrap;
+}
+@media (hover: hover) and (pointer: fine) {
+  .stage:hover { transform: translateX(4px); box-shadow: var(--shadow-sm); }
+}
+
+/* Tracking puts the form first, since that is what the page is for */
+.contact__grid--track { grid-template-columns: 1.05fr 1fr; }
+.track-alt {
+  margin-top: 1.5rem; padding-top: 1.35rem;
+  border-top: 1px solid rgba(255,255,255,.14);
+  display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+}
+.track-alt p { flex: 1 1 100%; font-size: .84rem; color: rgba(255,245,242,.68); }
+
+/* Date, time and select controls inherit the dark panel rather than the OS */
+.field input[type="date"], .field input[type="time"] { color-scheme: dark; }
+
+@media (max-width: 980px) {
+  .contact__grid--track { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .stage { grid-template-columns: auto minmax(0, 1fr); gap: .9rem; }
+  .stage__time { grid-column: 2; justify-self: start; margin-top: .4rem; }
+}

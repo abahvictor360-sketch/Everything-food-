@@ -17,11 +17,13 @@ Then open http://localhost:4173.
 index.html              Landing page
 menu.html               Full price list, served at /menu
 about.html              The kitchen's story, served at /about
+book.html               Table reservations, served at /book
+track.html              Order status, served at /track
 contact.html            Address, hours, form and delivery areas, at /contact
 assets/css/style.css    Design tokens, components, responsive rules, motion
 assets/js/main.js       Reveals, hero video, cart, filters, rail, drawer, embers loader
 assets/js/menu.js       Menu page: chips, search, tap-a-price ordering, fly-to-cart
-assets/js/contact.js    Contact form validation, composes a mailto
+assets/js/forms.js      Contact, booking and tracking form handling
 assets/js/embers.js     The WebGL spark field (ES module, loaded on demand)
 assets/vendor/          three.js, vendored so there is no third-party origin
 assets/font/            Plus Jakarta Sans, self-hosted
@@ -141,6 +143,37 @@ The hero is the part that moves most:
   name) so it shares a row with the order button instead of taking its own, and
   the top strip drops the delivery clause rather than wrapping to two lines.
 - Under 380px the card price and add button shrink so they stop competing.
+
+## What the site is for
+
+The landing page is about the cooking, not the checkout. Ordering is the thing
+you do once you have looked around and decided, so it sits at the end rather
+than the top:
+
+- The hero sends you to the dishes, not to a basket.
+- The dish grid on the landing page has no add-to-cart and no save button. It is
+  a menu to read. Prices are there so you know, and the only action under it is
+  "see the full menu and prices".
+- `/menu` is the ordering surface. That is where tapping a price does something.
+- A routes band near the foot of the landing page offers the three things a
+  visitor might want once they have decided: order it in, eat it here, or check
+  an order they already placed.
+
+Keep that order in mind when adding anything. A new call to action near the top
+of the landing page should be about the food; selling belongs below the fold.
+
+## Forms without a backend
+
+None of the three forms post anywhere, so none of them pretend to. Each
+validates and then hands off to a channel the kitchen actually reads:
+
+- Contact and booking compose a `mailto:` with every field filled in, so the
+  visitor keeps a copy and replies go to a real address.
+- Tracking opens WhatsApp with the order reference normalised (`ef4821`,
+  `EF 4821` and `4821` all become `EF-4821`) because that is where riders report
+  in. The page says so rather than implying a live feed.
+
+The booking form clamps its date input to between today and 90 days out.
 
 ## Navigation state
 
